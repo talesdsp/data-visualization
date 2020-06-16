@@ -36,11 +36,13 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "36rem",
     margin: "auto",
   },
-  reposChart: {
-    background: "#19323C",
-  },
   reposDescription: {
     background: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
+    justifyContent: "center",
   },
   button: {
     position: "absolute",
@@ -64,13 +66,7 @@ const RepoSection = ({ repos, languages, selectedRepo, setSelectedRepo }) => {
   const [pieChart, setPie] = useState(true);
 
   const Description = () => (
-    <Grid
-      item
-      xs={12}
-      md={6}
-      direction="column"
-      className={[classes.chart, classes.reposDescription].join(" ")}
-    >
+    <Grid item xs={12} md={6} className={[classes.chart, classes.reposDescription].join(" ")}>
       <div className={classes.row}>
         <Typography variant="h4" style={{ marginRight: "2rem" }}>
           {selectedRepo.name || <Skeleton variant="text" animation="wave" />}
@@ -80,14 +76,19 @@ const RepoSection = ({ repos, languages, selectedRepo, setSelectedRepo }) => {
       </div>
 
       <p style={{ textAlign: "center", margin: "20px auto" }}>{selectedRepo.description}</p>
-      <a href={selectedRepo.html_url} className={classes.anchor}>
+      <a
+        href={selectedRepo.html_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={classes.anchor}
+      >
         {selectedRepo.html_url}
       </a>
     </Grid>
   );
 
   const Charts = () => (
-    <Grid item xs={12} md={6} className={[classes.chart, classes.reposChart].join(" ")}>
+    <Grid item xs={12} md={6} className={[classes.chart].join(" ")}>
       <div className={classes.pie}>
         {pieChart
           ? (languages.data && <PieChart data={languages.data} />) || (
