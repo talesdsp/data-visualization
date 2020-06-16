@@ -158,4 +158,4 @@ const UserSection = ({ user: { data, isLoading } }) => {
     </div>
   );
 };
-export default UserSection;
+export default React.memo(UserSection);
