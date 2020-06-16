@@ -906,6 +906,7 @@
     regenerator-runtime "^0.13.4"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.6.3", "@babel/runtime@^7.9.2":
   version "7.10.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.2.tgz#d103f21f2602497d38348a32e008637d506db839"
@@ -917,6 +918,9 @@
 =======
 "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.4", "@babel/runtime@^7.8.3":
 >>>>>>> :heavy_plus_sign: install chart dependency
+=======
+"@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.4", "@babel/runtime@^7.8.3":
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
   version "7.9.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.2.tgz#d90df0583a3a252f09aaa619665367bae518db06"
   integrity sha512-NE2DtOdufG7R5vnfQUTehdTfNycfUANEtCa9PssN9O/xmTzP4E08UI797ixaei6hBEVL9BI/PsdJS5x7mWoB9Q==
@@ -1189,6 +1193,7 @@
     react-transition-group "^4.3.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@material-ui/icons@^4.9.1":
   version "4.9.1"
   resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.9.1.tgz#fdeadf8cb3d89208945b33dbc50c7c616d0bd665"
@@ -1209,6 +1214,8 @@
 
 =======
 >>>>>>> :heavy_plus_sign: install chart dependency
+=======
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
 "@material-ui/react-transition-group@^4.2.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@material-ui/react-transition-group/-/react-transition-group-4.3.0.tgz#92529142addb5cc179dbf42d246c7e3fe4d6104b"
@@ -1256,6 +1263,7 @@
   integrity sha512-wURPSY7/3+MAtng3i26g+WKwwNE3HEeqa/trDBR5+zWKmcjO+u9t7Npu/J1r+3dmIa/OeziN9D/18IrBKvKffw==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@material-ui/utils@^4.10.2":
   version "4.10.2"
   resolved "https://registry.yarnpkg.com/@material-ui/utils/-/utils-4.10.2.tgz#3fd5470ca61b7341f1e0468ac8f29a70bf6df321"
@@ -1267,6 +1275,8 @@
 
 =======
 >>>>>>> :heavy_plus_sign: install chart dependency
+=======
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
 "@material-ui/utils@^4.9.6":
   version "4.9.6"
   resolved "https://registry.yarnpkg.com/@material-ui/utils/-/utils-4.9.6.tgz#5f1f9f6e4df9c8b6a263293b68c94834248ff157"
@@ -1791,6 +1801,13 @@
   version "16.9.2"
   resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.9.2.tgz#e1c408831e8183e5ad748fdece02214a7c2ab6c5"
   integrity sha512-4eJr1JFLIAlWhzDkBCkhrOIWOvOxcCAfQh+jiKg7l/nNZcCIL2MHl2dZhogIFKyHzedVWHaVP1Yydq/Ruu4agw==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-transition-group@^4.2.0":
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.2.4.tgz#c7416225987ccdb719262766c1483da8f826838d"
+  integrity sha512-8DMUaDqh0S70TjkqU0DxOu80tFUiiaS9rxkWip/nb7gtvAsbqOXm02UCmR8zdcjWujgeYPiPNTVpVpKzUDotwA==
   dependencies:
     "@types/react" "*"
 
@@ -5429,6 +5446,7 @@ hmac-drbg@^1.0.0:
     minimalistic-crypto-utils "^1.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 hoist-non-react-statics@^2.3.1:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
@@ -5438,6 +5456,9 @@ hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0, hoist-non-react-
 =======
 hoist-non-react-statics@^3.3.2:
 >>>>>>> :heavy_plus_sign: install chart dependency
+=======
+hoist-non-react-statics@^3.3.2:
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -5609,8 +5630,11 @@ hyphenate-style-name@^1.0.3:
   integrity sha512-EcuixamT82oplpoJ2XU4pDtKGWQ7b00CD9f1ug9IaQ3p1bkHMiKCZ9ut9QDI6qsa6cpUuB+A/I+zLtdNK4n2DQ==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 iconv-lite@0.4.24, iconv-lite@^0.4.24, iconv-lite@~0.4.13:
 =======
+=======
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
 iconv-lite@0.4.24, iconv-lite@^0.4.24:
 >>>>>>> :heavy_plus_sign: install chart dependency
   version "0.4.24"
@@ -9195,7 +9219,10 @@ react-app-polyfill@^1.0.6:
     whatwg-fetch "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
 react-chartjs-2@^2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-2.9.0.tgz#d054dbdd763fbe9a76296a4ae0752ea549b76d9e"
@@ -9204,7 +9231,10 @@ react-chartjs-2@^2.9.0:
     lodash "^4.17.4"
     prop-types "^15.5.8"
 
+<<<<<<< HEAD
 >>>>>>> :heavy_plus_sign: install chart dependency
+=======
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
 react-countup@^4.3.3:
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/react-countup/-/react-countup-4.3.3.tgz#143a8d854d47290b73d6915eac20a12d839153c2"
@@ -9260,6 +9290,7 @@ react-error-overlay@^6.0.7:
   integrity sha512-TAv1KJFh3RhqxNvhzxj6LeT5NWklP6rDr2a0jaTfsZ5wSZWHOGeqQyejUp3xxLfPt2UpyJEcVQB/zyPcmonNFA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 react-github-calendar@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-1.0.4.tgz#fd2dccdf2766a6b8ae7fae631ce72d93ada656ee"
@@ -9272,6 +9303,9 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-i
 =======
 react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4:
 >>>>>>> :heavy_plus_sign: install chart dependency
+=======
+react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4:
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
@@ -9401,6 +9435,7 @@ react-scripts@3.4.1:
     fsevents "2.1.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 react-tooltip@^4.2.7:
   version "4.2.7"
   resolved "https://registry.yarnpkg.com/react-tooltip/-/react-tooltip-4.2.7.tgz#245b26aa23bc8ca877f9086ad169207d77281894"
@@ -9411,6 +9446,8 @@ react-tooltip@^4.2.7:
 
 =======
 >>>>>>> :heavy_plus_sign: install chart dependency
+=======
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
 react-transition-group@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.3.0.tgz#fea832e386cf8796c58b61874a3319704f5ce683"
@@ -10781,6 +10818,7 @@ timsort@^0.3.0:
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 tiny-invariant@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.1.0.tgz#634c5f8efdc27714b7f386c35e6760991d230875"
@@ -10790,10 +10828,14 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2, tiny-warning@^1.0.3:
 =======
 tiny-warning@^1.0.2:
 >>>>>>> :heavy_plus_sign: install chart dependency
+=======
+tiny-warning@^1.0.2:
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 tinycolor2@^1.4.0:
   version "1.4.1"
@@ -10802,6 +10844,8 @@ tinycolor2@^1.4.0:
 
 =======
 >>>>>>> :heavy_plus_sign: install chart dependency
+=======
+>>>>>>> 5bcc70be3b52623075c8b79136a35b08df2558e6
 tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
