@@ -32,4 +32,4 @@ function ContributionSection({ username }) {
   );
 }
 
-export default ContributionSection;
+export default React.memo(ContributionSection);
