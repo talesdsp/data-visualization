@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InputUsername = ({ margin = null, row = null }) => {
+const InputUsername = ({ setSelectedRepo = null, margin = null, row = null }) => {
   const classes = useStyles();
   const [values, setValues] = useState({ username: "" });
 
@@ -49,8 +49,9 @@ const InputUsername = ({ margin = null, row = null }) => {
   const history = useHistory();
 
   const handleSubmit = useCallback(() => {
+    if (setSelectedRepo) setSelectedRepo(null);
     history.push("/github/" + values.username);
-  }, [history, values.username]);
+  }, [history, setSelectedRepo, values.username]);
 
   useEffect(() => {
     const listener = (event) => {
@@ -87,4 +88,4 @@ const InputUsername = ({ margin = null, row = null }) => {
   );
 };
 
-export default InputUsername;
+export default React.memo(InputUsername);
