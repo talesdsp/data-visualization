@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Input } from "../components";
 import { ContributionSection, RepoSection, UserSection } from "./components";
 import { LanguagesActions } from "./store/languages/actions";
 import { ReposActions } from "./store/repos/actions";
@@ -45,6 +46,17 @@ function Profile({ match, history }) {
 
   return (
     <>
+      <div
+        style={{
+          background: "#fff",
+          width: "100%",
+          padding: "20px 0 0",
+          marginBottom: "50px",
+        }}
+      >
+        <Input row />
+      </div>
+
       <UserSection user={user} />
 
       <RepoSection

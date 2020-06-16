@@ -1,6 +1,6 @@
 {
-  "name": "data-vizualizer",
-  "version": "1.0.0",
+  "name": "data-visualizer",
+  "version": "1.2.0",
   "private": true,
   "main": "src/index",
   "dependencies": {

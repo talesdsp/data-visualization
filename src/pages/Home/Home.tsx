@@ -40,7 +40,7 @@ function Home({ history }) {
             Type your <GitHub className={classes.github} titleAccess="github" /> username
           </Typography>
 
-          <Input />
+          <Input margin />
 
           <Typography align="center" variant="h6" component="p" style={{ fontWeight: "bold" }}>
             Don't have an account?{" "}

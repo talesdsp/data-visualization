@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     alignItems: "baseline",
   },
   col: {
@@ -19,10 +19,11 @@ const useStyles = makeStyles((theme) => ({
   username: {
     width: "90%",
     maxWidth: "45rem",
-    margin: theme.spacing(4, 0),
     fontSize: theme.spacing(3),
-    backgroundColor: theme.palette.primary.dark,
     color: theme.palette.secondary.main,
+  },
+  margin: {
+    margin: theme.spacing(4, 0),
   },
   adornment: {
     color: "#000",
@@ -33,9 +34,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     marginBottom: theme.spacing(3),
   },
+  buttonMargin: {
+    marginLeft: theme.spacing(2),
+  },
 }));
 
-const InputUsername = ({ row = null }) => {
+const InputUsername = ({ margin = null, row = null }) => {
   const classes = useStyles();
   const [values, setValues] = useState({ username: "" });
 
@@ -61,21 +65,21 @@ const InputUsername = ({ row = null }) => {
   }, [handleSubmit]);
 
   return (
-    <FormControl variant="standard" className={row ? classes.row : classes.col}>
+    <FormControl variant="standard" className={[row ? classes.row : classes.col].join(" ")}>
       <Input
         id="adornment-amount"
         color="secondary"
         value={values.username}
         onChange={handleChange("username")}
         startAdornment={<span className={classes.adornment}>github/</span>}
-        className={classes.username}
+        className={[classes.username, margin && classes.margin].join(" ")}
       />
       <Button
         onClick={handleSubmit}
         type="submit"
         variant="contained"
         color="secondary"
-        className={classes.button}
+        className={[classes.button, row && classes.buttonMargin].join(" ")}
       >
         submit
       </Button>
