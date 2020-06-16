@@ -33,7 +33,7 @@ function Profile({ match, history }) {
 
   useEffect(() => {
     try {
-      if (error.error) return;
+      if (error.error) throw error.message;
       if (selectedRepo) {
         dispatch(LanguagesActions.getAsyncData(name, selectedRepo.name));
       }
@@ -42,7 +42,7 @@ function Profile({ match, history }) {
         `${error.error.message}\n${error.message}\nPlease reload the page, if error persists the rate limit is exceeded, try again later.`
       );
     }
-  }, [dispatch, error, name, selectedRepo]);
+  }, [dispatch, error.error, error.message, name, selectedRepo]);
 
   return (
     <>
@@ -54,7 +54,7 @@ function Profile({ match, history }) {
           marginBottom: "50px",
         }}
       >
-        <Input row />
+        <Input setSelectedRepo={setSelectedRepo} row />
       </div>
 
       <UserSection user={user} />
