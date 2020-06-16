@@ -1,7 +1,7 @@
 import { Container, Link, makeStyles, Typography } from "@material-ui/core";
 import { GitHub } from "@material-ui/icons";
 import React from "react";
-import { Input } from "./components";
+import { Input } from "../components";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
