@@ -12,13 +12,6 @@ const PieChart = ({ data }) => {
       cornerRadius={0}
       colors={colors}
       enableRadialLabels={false}
-      radialLabelsTextXOffset={6}
-      radialLabelsTextColor="#fff"
-      radialLabelsLinkOffset={0}
-      radialLabelsLinkDiagonalLength={8}
-      radialLabelsLinkHorizontalLength={14}
-      radialLabelsLinkStrokeWidth={2}
-      radialLabelsLinkColor={{ from: "color" }}
       slicesLabelsTextColor="#000"
       animate={true}
       motionStiffness={90}
@@ -50,14 +43,14 @@ const PieChart = ({ data }) => {
           direction: "column",
           itemWidth: 80,
           itemHeight: 21,
-          itemTextColor: "#eee",
+          itemTextColor: "#333",
           symbolSize: 18,
           symbolShape: "circle",
           effects: [
             {
               on: "hover",
               style: {
-                itemTextColor: "#fff",
+                itemTextColor: "#000",
               },
             },
           ],
