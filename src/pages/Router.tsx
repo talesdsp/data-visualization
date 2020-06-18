@@ -12,9 +12,15 @@ const Router = () => {
 
         <Route exact path="/github" component={Home} />
 
-        <Provider store={store}>
-          <Route exact path="/github/:username" component={Profile} />
-        </Provider>
+        <Route
+          exact
+          path="/github/:username"
+          render={(props) => (
+            <Provider store={store}>
+              <Profile {...props} />
+            </Provider>
+          )}
+        />
 
         <Route exact path="/financial" component={Financial} />
       </Switch>
