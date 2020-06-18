@@ -4,7 +4,6 @@ class MovingAverage {
   constructor({ intervalEMA, intervalSMA, series }: MovingAverageProps) {
     this.series = [...series];
 
-    
     if (intervalSMA > 0 && this.series[0].data.length >= intervalSMA) {
       this.simpleMovingAverage(this.series, intervalSMA);
     }
@@ -22,6 +21,7 @@ class MovingAverage {
       name: `SMA-${interval}`,
       data: [],
     });
+    let location = series.findIndex((v) => v.name === `SMA-${interval}`);
 
     let total: number;
     for (let i = interval; i < series[0].data.length; i++) {
@@ -30,7 +30,7 @@ class MovingAverage {
       for (let j = i - interval; j < i; j++) {
         total += series[0].data[j].y[3];
       }
-      series[1].data.push({
+      series[location].data.push({
         x: series[0].data[i].x,
         y: +(total / interval).toFixed(2),
       });
@@ -48,6 +48,8 @@ class MovingAverage {
       data: [],
     });
 
+    let location = series.findIndex((v) => v.name === `EMA-${interval}`);
+
     let total = 0;
     for (let i = 0; i < interval; i++) {
       total += series[0].data[i].y[3];
@@ -57,7 +59,7 @@ class MovingAverage {
     for (let i = interval; i < series[0].data.length; i++) {
       total = EMA(series[0].data[i].y[3], total);
 
-      series[series.length - 1].data.push({
+      series[location].data.push({
         x: series[0].data[i].x,
         y: +total.toFixed(2),
       });
