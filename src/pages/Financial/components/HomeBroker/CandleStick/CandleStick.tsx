@@ -3,7 +3,7 @@ import Chart from "react-apexcharts";
 
 const options = {
   chart: {
-    type: "line",
+    type: "candlestick",
   },
   title: {
     text: "CandleStick Chart",
@@ -22,7 +22,7 @@ const options = {
   },
 
   tooltip: {
-    shared: true,
+    shared: false,
   },
   xaxis: {
     type: "datetime",
