@@ -162,7 +162,7 @@ const Settings = ({ id, name, setName, email, setEmail, setPassword }) => {
 
       <div className={classes.group}>
         <div className={classes.row}>
-          <Warning className={classes.icon} /> Caution
+          <Warning className={classes.icon} /> Watch out - Bear zone
         </div>
         <div className={[classes.row, classes.list, classes.between].join(" ")}>
           <span className={classes.col}>

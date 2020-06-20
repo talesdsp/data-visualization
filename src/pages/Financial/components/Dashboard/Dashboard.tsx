@@ -11,6 +11,7 @@ import {
   TableChart,
 } from "@material-ui/icons";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { svg } from "../../../../assets";
 import { Broker, CreditCardHistory, Settings } from "./";
 
@@ -211,6 +212,12 @@ function Dashboard({
     return obj[id];
   };
 
+  const history = useHistory();
+
+  const navigateBack = () => {
+    history.push("/");
+  };
+
   return (
     <div style={{ backgroundColor: "#21252f", color: "#fff", height: "100vh" }}>
       <Grid container className={[classes.container, classes.fullScreen].join(" ")}>
@@ -246,7 +253,7 @@ function Dashboard({
             Settings
           </button>
 
-          <button className={classes.item} id="settings" onClick={handleClick}>
+          <button className={classes.item} id="" onClick={navigateBack}>
             <KeyboardBackspace className={[classes.icon, classes.sideIcon].join(" ")} />
             Log out
           </button>
