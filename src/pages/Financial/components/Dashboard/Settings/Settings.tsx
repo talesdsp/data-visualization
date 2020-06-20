@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   between: {
     justifyContent: "space-between",
   },
-  list: {
+  listItem: {
     padding: theme.spacing(3, 1),
     "&:hover": {
       background: "rgba(255,255,255,.02)",
@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     margin: "2rem 0",
     verticalAlign: "middle",
+    borderBottom: ".1rem solid #555",
   },
   desc: {
     color: "#aaa",
@@ -86,7 +87,7 @@ const Settings = ({ id, name, setName, email, setEmail, setPassword }) => {
           <AssignmentInd className={classes.icon} /> Id
         </div>
 
-        <div className={[classes.row, classes.list].join(" ")}>
+        <div className={[classes.row, classes.listItem].join(" ")}>
           <div className={classes.col}>{id}</div>
           <button
             ref={idRef}
@@ -113,7 +114,7 @@ const Settings = ({ id, name, setName, email, setEmail, setPassword }) => {
           <Edit className={classes.icon} /> Edit
         </div>
 
-        <div className={[classes.list, classes.row].join(" ")}>
+        <div className={[classes.listItem, classes.row].join(" ")}>
           <div className={classes.col}>
             <Input inputRef={nameRef} placeholder={name} className={classes.input} />
           </div>
@@ -124,7 +125,7 @@ const Settings = ({ id, name, setName, email, setEmail, setPassword }) => {
 
         <Grid container>
           <Grid xs={12} md={6} item>
-            <div className={[classes.list, classes.row].join(" ")}>
+            <div className={[classes.listItem, classes.row].join(" ")}>
               <div className={classes.col}>
                 <Input
                   inputRef={emailRef}
@@ -140,7 +141,7 @@ const Settings = ({ id, name, setName, email, setEmail, setPassword }) => {
           </Grid>
 
           <Grid xs={12} md={6} item>
-            <div className={[classes.list, classes.row].join(" ")}>
+            <div className={[classes.listItem, classes.row].join(" ")}>
               <div className={classes.col}>
                 <Input
                   inputRef={nameRef}
@@ -164,7 +165,7 @@ const Settings = ({ id, name, setName, email, setEmail, setPassword }) => {
         <div className={classes.row}>
           <Warning className={classes.icon} /> Watch out - Bear zone
         </div>
-        <div className={[classes.row, classes.list, classes.between].join(" ")}>
+        <div className={[classes.row, classes.listItem, classes.between].join(" ")}>
           <span className={classes.col}>
             <span>Delete account</span>
             <span className={classes.desc}>Withdraw your assets before deleting the account</span>

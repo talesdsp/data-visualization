@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     transition: "all 650ms ease",
   },
   center: {
-    height: "100vh",
+    minHeight: "100vh",
     backgroundColor: "#21252f",
   },
   container: {
@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   fullScreen: {
-    height: "100vh",
+    minHeight: "100vh",
   },
   homeBroker: {
     position: "fixed",
