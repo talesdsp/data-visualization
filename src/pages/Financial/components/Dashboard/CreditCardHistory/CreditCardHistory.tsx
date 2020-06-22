@@ -6,9 +6,10 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "start",
     fontSize: "1.6rem",
-    width: "80%",
+    minWidth: "35rem",
+    width: "40%",
   },
   button: {
     padding: theme.spacing(0, 3),
@@ -39,14 +40,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     fontSize: "1.4rem",
     margin: "2rem 0",
-    verticalAlign: "middle",
   },
   payments: {
     color: theme.palette.secondary.main,
   },
   history: {
-    margin: "auto",
-    width: "60%",
+    margin: "0 auto",
+    width: "100%",
     minWidth: "36rem",
   },
 }));

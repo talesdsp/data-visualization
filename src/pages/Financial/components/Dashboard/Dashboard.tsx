@@ -1,55 +1,32 @@
-import { Avatar, Grid, makeStyles } from "@material-ui/core";
+import { Grow, makeStyles } from "@material-ui/core";
 import {
   AccountBalance,
   AccountBalanceWallet,
   AcUnit,
-  AssignmentInd,
   CreditCard,
-  Home,
   KeyboardBackspace,
   Settings as SettingsIcon,
   TableChart,
 } from "@material-ui/icons";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { svg } from "../../../../assets";
 import { Broker, CreditCardHistory, Settings } from "./";
+import BalanceEvolution from "./BalanceEvolution/BalanceEvolution";
+import ExpensesEvolution from "./ExpensesEvolution/ExpensesEvolution";
 
 const useStyles = makeStyles((theme) => ({
-  avatar: {
-    width: theme.spacing(6),
-    height: theme.spacing(6),
-    marginBottom: theme.spacing(2),
-  },
-  username: {
-    fontSize: "1.8rem",
-  },
-  grey: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-    color: "#888",
-    fontSize: "1.3rem",
-  },
   sideBar: {
+    position: "fixed",
+    top: 0,
+    left: 0,
     background: "#272b39",
-    boxShadow: "0 0 2rem #151515",
     height: "100vh",
+    maxWidth: "7rem",
     zIndex: 2,
   },
-  tab: {
-    background: "#21252f",
-    height: "100vh",
-    position: "relative",
-    display: "flex",
-    width: "100%",
-    flexDirection: "column",
-    textAlign: "center",
-    padding: "4rem 0 0",
-    transition: "all 650ms ease",
-  },
   item: {
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
     display: "flex",
     background: "transparent",
     border: "none",
@@ -58,25 +35,24 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     color: "#999",
     width: "100%",
-    paddingLeft: "3rem",
+    paddingLeft: "2rem",
     borderLeft: ".3rem solid transparent",
     "&:focus": {
-      background: "rgba(255,2555,255,.05)",
+      background: "rgba(255,255,255,.05)",
       borderLeft: ".3rem solid var(--mint)",
       color: "var(--mint)",
     },
     "&:active": {
-      background: "rgba(255,2555,255,.05)",
+      background: "rgba(255,255,255,.05)",
       borderLeft: ".3rem solid var(--mint)",
       color: "var(--mint)",
     },
     "&:hover": {
-      background: "rgba(255,2555,255,.05)",
+      background: "rgba(255,255,255,.05)",
       borderLeft: ".3rem solid var(--mint)",
     },
   },
   col: {
-    position: "relative",
     display: "flex",
     width: "100%",
     flexDirection: "column",
@@ -86,8 +62,12 @@ const useStyles = makeStyles((theme) => ({
     transition: "all 650ms ease",
   },
   center: {
-    minHeight: "100vh",
-    backgroundColor: "#21252f",
+    height: "100vh",
+    marginLeft: "7rem",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    padding: theme.spacing(3),
   },
   container: {
     display: "flex",
@@ -95,9 +75,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
+    height: "100%",
+    color: "#fff",
   },
   fullScreen: {
-    minHeight: "100vh",
+    overflowX: "hidden",
   },
   homeBroker: {
     position: "fixed",
@@ -132,13 +114,12 @@ const useStyles = makeStyles((theme) => ({
     bottom: "6rem",
   },
   card: {
-    position: "absolute",
-    top: "4rem",
-    left: "4rem",
+    position: "relative",
     backgroundImage: "linear-gradient(to right, #392F5A, var(--blue))",
     width: "30rem",
     height: "18rem",
     borderRadius: ".5rem",
+    marginRight: "2rem",
     padding: "2rem",
     textAlign: "left",
     color: "#eee",
@@ -167,19 +148,54 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Kaushan Script, cursive",
   },
   row: {
+    width: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
-  hidden: {
-    opacity: 0,
-    transition: "opacity 650ms ease",
+  layer: {
+    width: "100%",
+    justifyContent: "space-around",
+    flexWrap: "wrap",
+    paddingTop: "3rem",
+    left: 0,
+    top: 0,
+    flex: 1,
+  },
+  tab: {
+    position: "absolute",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    top: 0,
+    left: 0,
+    margin: "auto",
+    backgroundColor: "#21252f",
+    flex: 1,
+    width: "100%",
+    textAlign: "center",
+    padding: "4rem",
+    transition: "all 650ms ease",
+  },
+
+  chart: {
+    display: "block",
+    minWidth: "36rem",
+    width: "100%",
+    padding: "4rem",
+  },
+  success: {
+    color: "var(--mint)",
+  },
+  error: {
+    color: "var(--red)",
   },
 }));
 
 function Dashboard({
   handleClick,
-  dashboard,
+  expenses,
+  currentTab: { wallet, credit, settings, broker },
   container,
   name,
   setName,
@@ -193,25 +209,6 @@ function Dashboard({
   const cardNumbers = "2134 5678 9080 5";
   const userId = "02.8874.6070";
 
-  const showTab = (id) => {
-    const obj = {
-      settings: (
-        <Settings
-          email={email}
-          setEmail={setEmail}
-          setName={setName}
-          id={userId}
-          name={name}
-          setPassword={setPassword}
-        />
-      ),
-      broker: <Broker />,
-      creditCard: <CreditCardHistory />,
-    };
-
-    return obj[id];
-  };
-
   const history = useHistory();
 
   const navigateBack = () => {
@@ -219,71 +216,117 @@ function Dashboard({
   };
 
   return (
-    <div style={{ backgroundColor: "#21252f", color: "#fff", height: "100vh" }}>
-      <Grid container className={[classes.container, classes.fullScreen].join(" ")}>
-        <Grid item xs={12} md={3} className={[classes.sideBar, classes.col].join(" ")}>
-          <Avatar className={classes.avatar} src={svg.avatar}></Avatar>
+    <div className={[classes.container, classes.fullScreen].join(" ")}>
+      <div className={[classes.col, classes.sideBar].join(" ")}>
+        <button className={[classes.item, "tab-tip"].join(" ")} id="wallet" onClick={handleClick}>
+          <AccountBalanceWallet className={[classes.icon, classes.sideIcon].join(" ")} />
+          <span>Wallet</span>
+        </button>
 
-          <h1 className={classes.username}>{name}</h1>
-          <p className={[classes.row, classes.grey].join(" ")}>
-            <AssignmentInd fontSize="large" />
-            <span> - {userId}</span>
-          </p>
+        <button className={[classes.item, "tab-tip"].join(" ")} id="broker" onClick={handleClick}>
+          <AccountBalance className={[classes.icon, classes.sideIcon].join(" ")} />
+          <span>Home Broker</span>
+        </button>
 
-          <button className={classes.item} id="wallet" onClick={handleClick}>
-            <AccountBalanceWallet className={[classes.icon, classes.sideIcon].join(" ")} />
-            Wallet
-          </button>
+        <button
+          className={[classes.item, "tab-tip"].join(" ")}
+          id="creditCard"
+          onClick={handleClick}
+        >
+          <CreditCard className={[classes.icon, classes.sideIcon].join(" ")} />
+          <span>Credit Card</span>
+        </button>
 
-          <button className={classes.item} id="broker" onClick={handleClick}>
-            <AccountBalance
-              color="inherit"
-              className={[classes.icon, classes.sideIcon].join(" ")}
-            />
-            HomeBroker
-          </button>
+        <button className={[classes.item, "tab-tip"].join(" ")} id="settings" onClick={handleClick}>
+          <SettingsIcon className={[classes.icon, classes.sideIcon].join(" ")} />
+          <span>Settings</span>
+        </button>
 
-          <button className={classes.item} id="creditCard" onClick={handleClick}>
-            <CreditCard className={[classes.icon, classes.sideIcon].join(" ")} />
-            Credit Card
-          </button>
+        <button className={[classes.item, "tab-tip"].join(" ")} onClick={navigateBack}>
+          <KeyboardBackspace className={[classes.icon, classes.sideIcon].join(" ")} />
+          <span>Log Out</span>
+        </button>
 
-          <button className={classes.item} id="settings" onClick={handleClick}>
-            <SettingsIcon className={[classes.icon, classes.sideIcon].join(" ")} />
-            Settings
-          </button>
+        {/* <CountUp delay={1} duration={4} useEasing end={15000} /> */}
+      </div>
 
-          <button className={classes.item} id="" onClick={navigateBack}>
-            <KeyboardBackspace className={[classes.icon, classes.sideIcon].join(" ")} />
-            Log out
-          </button>
+      <div className={[classes.col, classes.center].join(" ")} id="info">
+        {wallet === true && (
+          <Grow in={wallet}>
+            <div className={[classes.tab, classes.col].join(" ")}>
+              <div className={classes.row}>
+                <div className={[classes.card].join(" ")}>
+                  <div className={[classes.bankName].join(" ")}>
+                    <AcUnit className={[classes.icon, classes].join(" ")} />
+                    &nbsp;&nbsp;<h3>AC Royal Bank</h3>
+                  </div>
+                  <TableChart className={[classes.icon, classes.cardIcon].join(" ")} />
+                  <div className={classes.cardFooter}>
+                    <p className={classes.cardNumber}>{cardNumbers}</p>
+                    <p style={{ fontSize: "1.4rem" }}>{name}</p>
+                  </div>
+                  <span className={classes.expiry}>25/09</span>
+                </div>
 
-          {/* <CountUp delay={1} duration={4} useEasing end={15000} /> */}
-        </Grid>
+                <div>
+                  <p>Liberland: The Country on the Blockchain</p>
+                  <p>Oil jumps 2% on optimism around OPEC+ output pact</p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque rem quam, ipsa
+                    illo eaque perspiciatis?
+                  </p>
+                </div>
+              </div>
 
-        <Grid item xs={12} md={9} className={[classes.col, classes.center].join(" ")} id="info">
-          <div className={[classes.card, !dashboard && classes.hidden].join(" ")}>
-            <div className={[classes.bankName].join(" ")}>
-              <AcUnit className={[classes.icon, classes].join(" ")} />
-              &nbsp;&nbsp;<h3>AC Royal Bank</h3>
+              <div className={classes.row}>
+                <div className={classes.chart}>
+                  <h3 className={classes.row}>
+                    Balance <span className={classes.success}>$15.300</span>
+                  </h3>
+                  <BalanceEvolution />
+                </div>
+                <div className={classes.chart}>
+                  <h3 className={classes.row}>
+                    Expenses <span className={classes.error}>$15.300</span>
+                  </h3>
+                  <ExpensesEvolution series={expenses} />
+                </div>
+              </div>
             </div>
-            <TableChart className={[classes.icon, classes.cardIcon].join(" ")} />
-            <div className={classes.cardFooter}>
-              <p className={classes.cardNumber}>{cardNumbers}</p>
-              <p style={{ fontSize: "1.4rem" }}>{name}</p>
+          </Grow>
+        )}
+
+        {broker === true && (
+          <Grow in={broker}>
+            <div className={[classes.tab].join(" ")}>
+              <Broker />
             </div>
-            <span className={classes.expiry}>25/09</span>
-          </div>
+          </Grow>
+        )}
 
-          <button className={classes.homeBroker}>
-            <Home className={[classes.icon, classes.homeIcon].join(" ")} />
-          </button>
+        {credit === true && (
+          <Grow in={credit}>
+            <div className={[classes.tab].join(" ")}>
+              <CreditCardHistory expenses={expenses} />
+            </div>
+          </Grow>
+        )}
 
-          <div className={[dashboard && classes.hidden, classes.tab].join(" ")}>
-            {showTab(container)}
-          </div>
-        </Grid>
-      </Grid>
+        {settings && (
+          <Grow in={settings}>
+            <div className={[classes.tab].join(" ")}>
+              <Settings
+                email={email}
+                setEmail={setEmail}
+                setName={setName}
+                id={userId}
+                name={name}
+                setPassword={setPassword}
+              />
+            </div>
+          </Grow>
+        )}
+      </div>
     </div>
   );
 }
