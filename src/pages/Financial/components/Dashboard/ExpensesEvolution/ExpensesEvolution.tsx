@@ -1,58 +1,80 @@
 import React from "react";
 import Chart from "react-apexcharts";
+import { ExpensesSeries } from "../../../data";
 
-const options = {
-  chart: {
-    height: 350,
-    type: "area",
-    zoom: {
+const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses }) => {
+  const newData = expenses
+    .map((chart) =>
+      chart.data.map((day) => ({
+        x: day.x,
+        y: +day.y.reduce((acc, shops) => (acc += +shops[1]), 0).toFixed(2),
+      }))
+    )
+    .flat();
+
+  const expensesData = [
+    {
+      name: "Expenses",
+      data: newData,
+    },
+  ];
+
+  console.log(expenses);
+  const options = {
+    chart: {
+      height: 350,
+      zoom: {
+        enabled: false,
+      },
+    },
+    tooltip: { theme: "dark" },
+    dataLabels: {
       enabled: false,
     },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    curve: "straight",
-  },
-  legend: {
-    labels: {
-      colors: "#fff",
+    stroke: {
+      curve: "smooth",
     },
-  },
-  title: {
-    text: "Product Trends by Month",
-    align: "left",
-    style: {
-      color: "#fff",
-    },
-  },
-  grid: {
-    row: {
-      colors: ["#f3f3f3", "transparent"],
-      opacity: 0.5,
-    },
-  },
-  xaxis: {
-    type: "datetime",
-    labels: {
-      style: {
+    legend: {
+      labels: {
         colors: "#fff",
       },
     },
-  },
-  yaxis: {
-    opposite: true,
-    labels: {
+    title: {
+      align: "left",
       style: {
-        colors: "#fff",
+        color: "#fff",
       },
     },
-  },
-};
 
-const ExpensesEvolution = ({ series }) => {
-  return <Chart options={options} series={series} />;
+    xaxis: {
+      type: "datetime",
+      labels: {
+        style: {
+          colors: "#fff",
+        },
+      },
+    },
+    yaxis: {
+      opposite: true,
+      labels: {
+        style: {
+          colors: "#fff",
+        },
+      },
+    },
+  };
+
+  return (
+    <>
+      <h4 style={{ display: "flex", justifyContent: "center" }}>
+        Monthly Expenses
+        <span style={{ marginLeft: "1rem", color: "var(--red)" }}>
+          ${+newData.reduce((acc, value) => (acc += value.y), 0).toFixed(2)}
+        </span>
+      </h4>
+      <Chart type="line" options={options} series={expensesData} />
+    </>
+  );
 };
 
 export default ExpensesEvolution;

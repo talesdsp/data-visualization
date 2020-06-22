@@ -73,7 +73,10 @@ const BalanceEvolution = () => {
   return (
     <>
       <h4 style={{ display: "flex", justifyContent: "center" }}>
-        Bank Account <span style={{ color: "var(--mint)" }}>${series[0].data.slice(-1)[0]}</span>
+        Bank Account
+        <span style={{ marginLeft: "1rem", color: "var(--mint)" }}>
+          ${series[0].data.slice(-1)[0]}
+        </span>
       </h4>
       <Chart type="area" options={options} series={series} />
     </>
