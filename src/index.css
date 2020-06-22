@@ -32,3 +32,65 @@ body {
 p {
   font-size: 1.6rem;
 }
+
+/**
+*! Tab Tooltip
+*/
+
+.tab-tip {
+  position: relative;
+  display: inline;
+}
+.tab-tip span {
+  position: absolute;
+  width: 140px;
+  color: #999;
+  background: #323643;
+  padding: 21px;
+  font-size: 1.4rem;
+  line-height: 30px;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 650ms ease;
+}
+
+.tab-tip:hover span {
+  visibility: visible;
+  opacity: 1;
+  left: 100%;
+  top: 50%;
+  margin-top: -36px;
+  z-index: 999;
+  transition: opacity 650ms ease;
+}
+
+/**
+*!  Success Tooltip
+*/
+.success-tip {
+  position: relative;
+  display: inline;
+}
+.success-tip span {
+  position: absolute;
+  width: 140px;
+  color: #ffffff;
+  background: #00ce3e;
+  height: 34px;
+  opacity: 0;
+  line-height: 34px;
+  text-align: center;
+  visibility: hidden;
+  border-radius: 6px;
+  transition: opacity 650ms ease;
+}
+.success-tip.active span {
+  visibility: visible;
+  opacity: 0.9;
+  top: 30px;
+  left: 50%;
+  margin-left: -76px;
+  z-index: 999;
+  transition: opacity 650ms ease;
+}
