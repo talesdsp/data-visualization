@@ -8,10 +8,10 @@ interface Series<T> {
 
 export type Stocks = Series<{
   x: Date;
-  y: any[];
+  y: number[];
 }>[];
 
-export type ExpensesSeries = Series<{ x: string; y: [string, number][] }>[];
+export type ExpensesSeries = Series<{ x: any; y: [string, number][] }>[];
 
 export const series1: Stocks = [
   {
@@ -278,9 +278,9 @@ export const expenses: ExpensesSeries = [
     name: "Expenses",
     type: "line",
     data: [
-      { x: "10-09", y: [["Joel Dentist", 105.8]] },
+      { x: new Date("2020-11-10"), y: [["Joel Dentist", 105.8]] },
       {
-        x: "08-09",
+        x: new Date("2020-11-8"),
         y: [
           ["Uber", 21.44],
           ["Mechanic", 300.9],
@@ -289,7 +289,7 @@ export const expenses: ExpensesSeries = [
         ],
       },
       {
-        x: "06-09",
+        x: new Date("2020-11-6"),
         y: [
           ["Uber", 18],
           ["Hairdresser", 123.9],
@@ -298,7 +298,7 @@ export const expenses: ExpensesSeries = [
         ],
       },
       {
-        x: "05-09",
+        x: new Date("2020-11-5"),
         y: [
           ["Marketing experts", 123.9],
           ["Uber", 22.13],
@@ -307,7 +307,7 @@ export const expenses: ExpensesSeries = [
         ],
       },
       {
-        x: "04-09",
+        x: new Date("2020-11-4"),
         y: [
           ["Fancy Pants", 123.9],
           ["Hyper Market", 22.13],
@@ -315,7 +315,7 @@ export const expenses: ExpensesSeries = [
         ],
       },
       {
-        x: "02-09",
+        x: new Date("2020-11-2"),
         y: [
           ["NC Gas Station", 33.7],
           ["BakerMasters", 10.2],
