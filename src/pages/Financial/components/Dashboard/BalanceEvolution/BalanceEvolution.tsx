@@ -3,23 +3,19 @@ import Chart from "react-apexcharts";
 
 const options = {
   dataLabels: {
-    enabled: true,
+    enabled: false,
   },
   stroke: {
     curve: "stepline",
   },
 
   title: {
-    text: "Patrimonial Balance",
     align: "left",
     style: {
       color: "#fff",
     },
   },
-  subtitle: {
-    text: "Price Movements",
-    align: "left",
-  },
+  markers: { size: 0 },
   legend: {
     horizontalAlign: "left",
     labels: {
@@ -31,6 +27,9 @@ const options = {
       colors: ["#111", "transparent"],
       opacity: 0.5,
     },
+  },
+  tooltip: {
+    theme: "dark",
   },
   xaxis: {
     categories: [
@@ -71,7 +70,14 @@ const series = [
 ];
 
 const BalanceEvolution = () => {
-  return <Chart type="area" options={options} series={series} />;
+  return (
+    <>
+      <h4 style={{ display: "flex", justifyContent: "center" }}>
+        Bank Account <span style={{ color: "var(--mint)" }}>${series[0].data.slice(-1)[0]}</span>
+      </h4>
+      <Chart type="area" options={options} series={series} />
+    </>
+  );
 };
 
 export default BalanceEvolution;
