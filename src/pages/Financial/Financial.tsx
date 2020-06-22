@@ -1,8 +1,25 @@
-import React, { useRef, useState } from "react";
+import React, { useReducer, useRef, useState } from "react";
 import { Dashboard } from "./components";
 import HomeBroker from "./components/HomeBroker/HomeBroker";
-import { series1 } from "./data";
+import { expenses, series1 } from "./data";
 import MovingAverage from "./models/moving_average";
+
+const initialState = { wallet: true, credit: false, broker: false, settings: false };
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "wallet":
+      return initialState;
+    case "broker":
+      return { ...initialState, wallet: false, broker: true };
+    case "creditCard":
+      return { ...initialState, wallet: false, credit: true };
+    case "settings":
+      return { ...initialState, wallet: false, settings: true };
+    default:
+      return initialState;
+  }
+};
 
 const Financial: React.FC = () => {
   const [intervalEMA, setEMA] = useState(0);
@@ -33,28 +50,26 @@ const Financial: React.FC = () => {
     );
   };
 
-  const [dashboard, setDashboard] = useState<boolean>(true);
+  const [currentTab, dispatch] = useReducer(reducer, initialState);
+
   const [container, setContainer] = useState<any>("");
 
   const [name, setName] = useState<any>("Elisa Montenegro");
   const [email, setEmail] = useState<any>("contact@elisa.com");
   const [, setPassword] = useState<any>("contact@elisa.com");
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     let id = document.activeElement.id;
-    if (id === "wallet") {
-      setDashboard(true);
-    } else {
-      setDashboard(false);
-      setContainer(id);
-    }
+    dispatch({ type: id });
+    setContainer(id);
   };
 
   return (
     <>
       <Dashboard
+        expenses={expenses}
         container={container}
-        dashboard={dashboard}
+        currentTab={currentTab}
         handleClick={handleClick}
         setBroker={setBroker}
         setPassword={setPassword}
