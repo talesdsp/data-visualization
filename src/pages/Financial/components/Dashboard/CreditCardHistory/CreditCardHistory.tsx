@@ -1,13 +1,14 @@
-import { Container, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import React from "react";
+import { ExpensesSeries } from "../../../data";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "start",
+    justifyContent: "center",
     fontSize: "1.6rem",
-    width: "90%",
+    width: "80%",
   },
   button: {
     padding: theme.spacing(0, 3),
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   row: {
     display: "flex",
     alignItems: "center",
+    width: "100%",
   },
   col: {
     display: "flex",
@@ -43,79 +45,43 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
   },
   history: {
-    overflow: "auto",
-    height: "80vh",
+    margin: "auto",
+    width: "60%",
+    minWidth: "36rem",
   },
 }));
 
-const mockHistory: Record<string, [string, number][]> = {
-  "19-09": [["Joel Dentist", 105.8]],
-  "18-09": [
-    ["Uber", 21.44],
-    ["Mechanic", 300.9],
-    ["Uber", 26.44],
-    ["BestFoods.co", 90.7],
-  ],
-  "16-09": [
-    ["Uber", 18],
-    ["Hairdresser", 123.9],
-    ["Uber", 22.13],
-    ["Grandma apple pies", 33.7],
-    ["BakerMasters", 10.2],
-  ],
-  "16-119": [
-    ["Uber", 18],
-    ["Hairdresser", 123.9],
-    ["Uber", 22.13],
-    ["Grandma apple pies", 33.7],
-    ["BakerMasters", 10.2],
-  ],
-  "16-0": [
-    ["Uber", 18],
-    ["Hairdresser", 123.9],
-    ["Uber", 22.13],
-    ["Grandma apple pies", 33.7],
-    ["BakerMasters", 10.2],
-  ],
-  "16-019": [
-    ["Uber", 18],
-    ["Hairdresser", 123.9],
-    ["Uber", 22.13],
-    ["Grandma apple pies", 33.7],
-    ["BakerMasters", 10.2],
-  ],
-};
-
-const CreditCardHistory = () => {
+const CreditCardHistory: React.FC<{ expenses: ExpensesSeries }> = ({ expenses }) => {
   const classes = useStyles();
-  console.log(Object.entries(mockHistory));
 
   return (
-    <Container maxWidth="sm">
+    <div className={classes.wrapper}>
       <div className={[classes.row, classes.between].join(" ")}>
         <h2 style={{ marginBottom: "2rem" }}>Expenses</h2>
         <button className={classes.button}>Print bank statement</button>
       </div>
 
       <div className={classes.history}>
-        {Object.entries(mockHistory).map((date) => (
-          <div key={date[0]} className={classes.group}>
-            {date[0]}
-            <div className={classes.col}>
-              {date[1].map((payment) => (
-                <div
-                  key={payment[0] + payment[1]}
-                  className={[classes.row, classes.listItem, classes.between].join(" ")}
-                >
-                  <span>{payment[0]}</span>
-                  <span className={classes.payments}>{payment[1]}</span>
+        {expenses.map((total) =>
+          total.data.map((date) => (
+            <div key={date.x} className={classes.group}>
+              {date.x}
+              {date.y.map((payment) => (
+                <div className={classes.col}>
+                  <div
+                    key={payment[0] + payment[1]}
+                    className={[classes.row, classes.listItem, classes.between].join(" ")}
+                  >
+                    <span>{payment[0]}</span>
+                    <span className={classes.payments}>{payment[1]}</span>
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
-    </Container>
+    </div>
   );
 };
 

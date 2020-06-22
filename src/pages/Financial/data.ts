@@ -1,4 +1,19 @@
-export const series = [
+import faker from "faker";
+
+interface Series<T> {
+  name: string;
+  type: string;
+  data: T[];
+}
+
+export type Stocks = Series<{
+  x: Date;
+  y: any[];
+}>[];
+
+export type ExpensesSeries = Series<{ x: string; y: [string, number][] }>[];
+
+export const series1: Stocks = [
   {
     name: "CandleSticks",
     type: "candlestick",
@@ -242,6 +257,69 @@ export const series = [
       {
         x: new Date(1538884800000),
         y: [6604.98, 6606, 6604.07, 6606],
+      },
+    ],
+  },
+];
+
+export const series2: Stocks = [
+  {
+    name: "STOCK ABC",
+    type: "line",
+    data: [...Array(20)].map((v) => ({
+      x: faker.date.recent(10),
+      y: [...Array(4)].map((v) => +faker.random.number({ min: 9, max: 15 }).toFixed(2)),
+    })),
+  },
+];
+
+export const expenses: ExpensesSeries = [
+  {
+    name: "Expenses",
+    type: "line",
+    data: [
+      { x: "10-09", y: [["Joel Dentist", 105.8]] },
+      {
+        x: "08-09",
+        y: [
+          ["Uber", 21.44],
+          ["Mechanic", 300.9],
+          ["Uber", 26.44],
+          ["BestFoods.co", 90.7],
+        ],
+      },
+      {
+        x: "06-09",
+        y: [
+          ["Uber", 18],
+          ["Hairdresser", 123.9],
+          ["Uber", 22.13],
+          ["Grandma apple pies", 33.7],
+        ],
+      },
+      {
+        x: "05-09",
+        y: [
+          ["Marketing experts", 123.9],
+          ["Uber", 22.13],
+          ["Coffee Point", 33.7],
+          ["BakerMasters", 10.2],
+        ],
+      },
+      {
+        x: "04-09",
+        y: [
+          ["Fancy Pants", 123.9],
+          ["Hyper Market", 22.13],
+          ["Coffee Point", 33.7],
+        ],
+      },
+      {
+        x: "02-09",
+        y: [
+          ["NC Gas Station", 33.7],
+          ["BakerMasters", 10.2],
+        ],
       },
     ],
   },
