@@ -1,17 +1,34 @@
-import { Container, Grid, Input, makeStyles } from "@material-ui/core";
+import { Avatar, Grid, Input, makeStyles } from "@material-ui/core";
 import { AssignmentInd, Edit, Warning } from "@material-ui/icons";
 import ClipboardJS from "clipboard";
 import React, { useRef } from "react";
-import ReactTooltip from "react-tooltip";
 import { svg } from "../../../../../assets";
+
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "start",
     fontSize: "1.6rem",
-    width: "90%",
+    minWidth: "35rem",
+    width: "60%",
   },
+  avatar: {
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+  username: {
+    fontSize: "1.8rem",
+  },
+  grey: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+    color: "#888",
+    fontSize: "1.3rem",
+  },
+
   button: {
     padding: theme.spacing(0, 3),
     borderRadius: ".5rem",
@@ -74,12 +91,20 @@ const Settings = ({ id, name, setName, email, setEmail, setPassword }) => {
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const idRef = useRef(null);
 
   new ClipboardJS(".btn");
 
+  const showTooltip = (e) => {
+    let b = e.currentTarget.classList;
+    b.add("active");
+
+    setTimeout(() => {
+      b.remove("active");
+    }, 3000);
+  };
+
   return (
-    <Container maxWidth="md" className={classes.wrapper}>
+    <div className={classes.wrapper}>
       <h2 style={{ marginBottom: "2rem" }}>Settings</h2>
 
       <div className={classes.group}>
@@ -87,25 +112,28 @@ const Settings = ({ id, name, setName, email, setEmail, setPassword }) => {
           <AssignmentInd className={classes.icon} /> Id
         </div>
 
+        <div className={classes.row}>
+          <Avatar className={classes.avatar} src={svg.avatar}></Avatar>
+          <div className={classes.col}>
+            <h1 className={classes.username}>{name}</h1>
+            <p className={[classes.row, classes.grey].join(" ")}>
+              <AssignmentInd fontSize="large" />
+              <span> - {id}</span>
+            </p>
+          </div>
+        </div>
+
         <div className={[classes.row, classes.listItem].join(" ")}>
           <div className={classes.col}>{id}</div>
+
           <button
-            ref={idRef}
-            data-tip="Copied!"
-            onClick={() => ReactTooltip.show(idRef.current)}
-            className={["btn", classes.btn, classes.row].join(" ")}
+            onClick={showTooltip}
+            className={["btn", "success-tip", classes.btn, classes.row].join(" ")}
             data-clipboard-text={id}
           >
             <img src={svg.clipboard} alt="copy" width="15px" /> Copy
+            <span>Copied!</span>
           </button>
-          <ReactTooltip
-            type="success"
-            event="click"
-            eventOff="blur"
-            delayShow={100}
-            delayHide={500}
-            place="bottom"
-          />
         </div>
       </div>
 
@@ -173,7 +201,7 @@ const Settings = ({ id, name, setName, email, setEmail, setPassword }) => {
           <button className={[classes.button, classes.danger].join(" ")}>Delete account</button>
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
