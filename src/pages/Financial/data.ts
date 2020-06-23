@@ -262,13 +262,48 @@ export const series1: Stocks = [
   },
 ];
 
-export const series2: Stocks = [
+const OHLC = () => {
+  let open;
+  let high;
+  let low;
+  let close;
+
+  const getRandom = () => +faker.random.number({ min: 9, max: 17, precision: 0.1 }).toFixed(2);
+
+  open = getRandom();
+  close = getRandom();
+
+  do {
+    high = getRandom();
+  } while (high < open || high < close);
+
+  do {
+    low = getRandom();
+  } while (low > open || low > close);
+
+  return [open, high, low, close];
+};
+
+let arr: string[] = [];
+const dateTime = () => {
+  let today = faker.date.recent(50).toISOString().slice(0, 11);
+
+  while (arr.indexOf(today) !== -1) {
+    today = faker.date.recent(50).toISOString().slice(0, 11);
+  }
+
+  arr.push(today);
+
+  return today;
+};
+
+export const series2: any = [
   {
     name: "STOCK ABC",
-    type: "line",
-    data: [...Array(20)].map((v) => ({
-      x: faker.date.recent(10),
-      y: [...Array(4)].map((v) => +faker.random.number({ min: 9, max: 15 }).toFixed(2)),
+    type: "candlestick",
+    data: [...Array(30)].map((v) => ({
+      x: dateTime(),
+      y: OHLC(),
     })),
   },
 ];
