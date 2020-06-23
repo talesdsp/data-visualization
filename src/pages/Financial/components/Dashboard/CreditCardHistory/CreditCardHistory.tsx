@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
 const CreditCardHistory: React.FC<{ expenses: ExpensesSeries }> = ({ expenses }) => {
   const classes = useStyles();
 
-  console.log(expenses);
   return (
     <div className={classes.wrapper}>
       <div className={[classes.row, classes.between].join(" ")}>
@@ -65,8 +64,8 @@ const CreditCardHistory: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
       <div className={classes.history}>
         {expenses.map((chart) =>
           chart.data.map((day) => (
-            <div key={`${day.x}`} className={classes.group}>
-              {`${day.x}`}
+            <div key={day.x.toDateString()} className={classes.group}>
+              {day.x.toDateString()}
               {day.y.map((payment) => (
                 <div className={classes.col}>
                   <div

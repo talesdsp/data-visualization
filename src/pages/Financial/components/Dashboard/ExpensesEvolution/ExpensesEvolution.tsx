@@ -22,9 +22,6 @@ const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
   const options = {
     chart: {
       height: 350,
-      zoom: {
-        enabled: false,
-      },
     },
     tooltip: { theme: "dark" },
     dataLabels: {
@@ -66,7 +63,7 @@ const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
   return (
     <>
       <h4 style={{ display: "flex", justifyContent: "center" }}>
-        Monthly Expenses
+        Expenses
         <span style={{ marginLeft: "1rem", color: "var(--red)" }}>
           ${+newData.reduce((acc, value) => (acc += value.y), 0).toFixed(2)}
         </span>
