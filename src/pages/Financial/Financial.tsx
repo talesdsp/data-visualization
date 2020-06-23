@@ -28,7 +28,7 @@ const Financial: React.FC = () => {
   const [chosenChart, setChosenChart] = useState(series1);
 
   const [chart, setChart] = useState(
-    new MovingAverage({ series: chosenChart, intervalEMA, intervalSMA, intervalBollinger }).series
+    new MovingAverage({ series: chosenChart, intervalEMA, intervalSMA, intervalBollinger })
   );
 
   const smaEl = useRef(null);
@@ -43,7 +43,7 @@ const Financial: React.FC = () => {
         intervalEMA,
         intervalSMA: +smaEl.current.value,
         intervalBollinger,
-      }).series
+      })
     );
   };
 
@@ -55,7 +55,7 @@ const Financial: React.FC = () => {
         intervalEMA: +emaEl.current.value,
         intervalSMA,
         intervalBollinger,
-      }).series
+      })
     );
   };
 
@@ -67,7 +67,7 @@ const Financial: React.FC = () => {
         intervalEMA,
         intervalSMA,
         intervalBollinger: +bollingerEl.current.value,
-      }).series
+      })
     );
   };
 

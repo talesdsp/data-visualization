@@ -1,8 +1,10 @@
 class MovingAverage {
   public series: Series[];
+  public days: Date[];
 
   constructor({ series, intervalEMA, intervalSMA, intervalBollinger }: MovingAverageProps) {
     this.series = [...series];
+    this.days = series[0].data.map((d) => d.x);
 
     if (intervalSMA > 0 && this.series[0].data.length >= intervalSMA) {
       this.simpleMovingAverage(this.series, intervalSMA);
