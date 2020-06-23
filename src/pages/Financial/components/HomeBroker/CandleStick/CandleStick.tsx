@@ -23,6 +23,17 @@ const options = {
 
   tooltip: {
     shared: false,
+    theme: "dark",
+    y: {
+      title: "",
+      formatter: function (value, { series, seriesIndex, dataPointIndex, w }) {
+        return `o: ${series[0][0]}\n
+        h:${series[0][1]}\n
+        l:${series[0][2]}\n
+        c:${series[0][3]}
+        `;
+      },
+    },
   },
   xaxis: {
     type: "datetime",
@@ -41,8 +52,8 @@ const options = {
   },
 };
 
-const CandleLineChart = ({ chart }) => {
+const CandleStick = ({ chart }) => {
   return <Chart options={options} series={chart} />;
 };
 
-export default CandleLineChart;
+export default CandleStick;

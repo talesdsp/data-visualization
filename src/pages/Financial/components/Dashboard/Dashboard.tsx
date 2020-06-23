@@ -10,7 +10,8 @@ import {
 } from "@material-ui/icons";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Broker, CreditCardHistory, Settings } from "./";
+import HomeBroker from "../HomeBroker/HomeBroker";
+import { CreditCardHistory, Settings } from "./";
 import BalanceEvolution from "./BalanceEvolution/BalanceEvolution";
 import ExpensesEvolution from "./ExpensesEvolution/ExpensesEvolution";
 
@@ -150,6 +151,7 @@ const useStyles = makeStyles((theme) => ({
   row: {
     width: "100%",
     display: "flex",
+    flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -169,10 +171,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     top: 0,
     left: 0,
+    right: 0,
     margin: "auto",
     backgroundColor: "#21252f",
     flex: 1,
-    width: "100%",
+    minHeight: "100vh",
     textAlign: "center",
     padding: "4rem",
     transition: "all 650ms ease",
@@ -182,6 +185,7 @@ const useStyles = makeStyles((theme) => ({
     display: "block",
     minWidth: "36rem",
     width: "100%",
+    maxWidth: "43vw",
     padding: "4rem",
   },
   success: {
@@ -196,13 +200,18 @@ function Dashboard({
   handleClick,
   expenses,
   currentTab: { wallet, credit, settings, broker },
-  container,
+
   name,
   setName,
   email,
   setEmail,
   setPassword,
-  setBroker,
+
+  chart,
+  emaEl,
+  smaEl,
+  toggleEMA,
+  toggleSMA,
 }) {
   const classes = useStyles();
 
@@ -280,16 +289,10 @@ function Dashboard({
 
               <div className={classes.row}>
                 <div className={classes.chart}>
-                  <h3 className={classes.row}>
-                    Balance <span className={classes.success}>$15.300</span>
-                  </h3>
                   <BalanceEvolution />
                 </div>
                 <div className={classes.chart}>
-                  <h3 className={classes.row}>
-                    Expenses <span className={classes.error}>$15.300</span>
-                  </h3>
-                  <ExpensesEvolution series={expenses} />
+                  <ExpensesEvolution expenses={expenses} />
                 </div>
               </div>
             </div>
@@ -299,7 +302,13 @@ function Dashboard({
         {broker === true && (
           <Grow in={broker}>
             <div className={[classes.tab].join(" ")}>
-              <Broker />
+              <HomeBroker
+                chart={chart}
+                emaEl={emaEl}
+                smaEl={smaEl}
+                toggleEMA={toggleEMA}
+                toggleSMA={toggleSMA}
+              />
             </div>
           </Grow>
         )}

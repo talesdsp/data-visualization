@@ -1,10 +1,9 @@
 import React, { useReducer, useRef, useState } from "react";
 import { Dashboard } from "./components";
-import HomeBroker from "./components/HomeBroker/HomeBroker";
 import { expenses, series1 } from "./data";
 import MovingAverage from "./models/moving_average";
 
-const initialState = { wallet: true, credit: false, broker: false, settings: false };
+const initialState = { wallet: false, credit: false, broker: true, settings: false };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -24,7 +23,6 @@ const reducer = (state = initialState, action) => {
 const Financial: React.FC = () => {
   const [intervalEMA, setEMA] = useState(0);
   const [intervalSMA, setSMA] = useState(0);
-  const [broker, setBroker] = useState(false);
 
   const [chosenChart, setChosenChart] = useState(series1);
 
@@ -52,8 +50,6 @@ const Financial: React.FC = () => {
 
   const [currentTab, dispatch] = useReducer(reducer, initialState);
 
-  const [container, setContainer] = useState<any>("");
-
   const [name, setName] = useState<any>("Elisa Montenegro");
   const [email, setEmail] = useState<any>("contact@elisa.com");
   const [, setPassword] = useState<any>("contact@elisa.com");
@@ -61,33 +57,25 @@ const Financial: React.FC = () => {
   const handleClick = (e) => {
     let id = document.activeElement.id;
     dispatch({ type: id });
-    setContainer(id);
   };
 
   return (
     <>
       <Dashboard
         expenses={expenses}
-        container={container}
         currentTab={currentTab}
         handleClick={handleClick}
-        setBroker={setBroker}
         setPassword={setPassword}
         name={name}
         setName={setName}
         email={email}
         setEmail={setEmail}
+        chart={chart}
+        emaEl={emaEl}
+        smaEl={smaEl}
+        toggleEMA={toggleEMA}
+        toggleSMA={toggleSMA}
       />
-
-      {broker && (
-        <HomeBroker
-          chart={chart}
-          emaEl={emaEl}
-          smaEl={smaEl}
-          toggleEMA={toggleEMA}
-          toggleSMA={toggleSMA}
-        />
-      )}
     </>
   );
 };
