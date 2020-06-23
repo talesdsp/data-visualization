@@ -208,10 +208,12 @@ function Dashboard({
   setPassword,
 
   chart,
+  bollingerEl,
   emaEl,
   smaEl,
   toggleEMA,
   toggleSMA,
+  toggleBollinger,
 }) {
   const classes = useStyles();
 
@@ -304,6 +306,8 @@ function Dashboard({
             <div className={[classes.tab].join(" ")}>
               <HomeBroker
                 chart={chart}
+                bollingerEl={bollingerEl}
+                toggleBollinger={toggleBollinger}
                 emaEl={emaEl}
                 smaEl={smaEl}
                 toggleEMA={toggleEMA}

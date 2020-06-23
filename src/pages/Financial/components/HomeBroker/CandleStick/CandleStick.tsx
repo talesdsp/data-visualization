@@ -6,14 +6,14 @@ const options = {
     type: "candlestick",
   },
   title: {
-    text: "CandleStick Chart",
+    text: "ABCDE-4",
     align: "left",
     style: {
       color: "#fff",
     },
   },
   stroke: {
-    width: [1, 3, 3],
+    width: [1, 3, 3, 3, 3, 3, 3],
   },
   legend: {
     labels: {
@@ -22,18 +22,7 @@ const options = {
   },
 
   tooltip: {
-    shared: false,
     theme: "dark",
-    y: {
-      title: "",
-      formatter: function (value, { series, seriesIndex, dataPointIndex, w }) {
-        return `o: ${series[0][0]}\n
-        h:${series[0][1]}\n
-        l:${series[0][2]}\n
-        c:${series[0][3]}
-        `;
-      },
-    },
   },
   xaxis: {
     type: "datetime",
@@ -44,6 +33,7 @@ const options = {
     },
   },
   yaxis: {
+    tooltip: { enabled: true },
     labels: {
       style: {
         colors: "#fff",

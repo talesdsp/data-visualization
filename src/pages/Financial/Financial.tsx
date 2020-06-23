@@ -3,7 +3,7 @@ import { Dashboard } from "./components";
 import { expenses, series1 } from "./data";
 import MovingAverage from "./models/moving_average";
 
-const initialState = { wallet: false, credit: false, broker: true, settings: false };
+const initialState = { wallet: true, credit: false, broker: false, settings: false };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -23,28 +23,51 @@ const reducer = (state = initialState, action) => {
 const Financial: React.FC = () => {
   const [intervalEMA, setEMA] = useState(0);
   const [intervalSMA, setSMA] = useState(0);
+  const [intervalBollinger, setBollinger] = useState(0);
 
   const [chosenChart, setChosenChart] = useState(series1);
 
   const [chart, setChart] = useState(
-    new MovingAverage({ series: chosenChart, intervalEMA, intervalSMA }).series
+    new MovingAverage({ series: chosenChart, intervalEMA, intervalSMA, intervalBollinger }).series
   );
 
   const smaEl = useRef(null);
   const emaEl = useRef(null);
+  const bollingerEl = useRef(null);
 
   const toggleSMA = () => {
     setSMA(+smaEl.current.value);
     setChart(
-      new MovingAverage({ series: chosenChart, intervalEMA, intervalSMA: +smaEl.current.value })
-        .series
+      new MovingAverage({
+        series: chosenChart,
+        intervalEMA,
+        intervalSMA: +smaEl.current.value,
+        intervalBollinger,
+      }).series
     );
   };
+
   const toggleEMA = () => {
     setEMA(+emaEl.current.value);
     setChart(
-      new MovingAverage({ series: chosenChart, intervalEMA: +emaEl.current.value, intervalSMA })
-        .series
+      new MovingAverage({
+        series: chosenChart,
+        intervalEMA: +emaEl.current.value,
+        intervalSMA,
+        intervalBollinger,
+      }).series
+    );
+  };
+
+  const toggleBollingerBands = () => {
+    setBollinger(+bollingerEl.current.value);
+    setChart(
+      new MovingAverage({
+        series: chosenChart,
+        intervalEMA,
+        intervalSMA,
+        intervalBollinger: +bollingerEl.current.value,
+      }).series
     );
   };
 
@@ -71,10 +94,12 @@ const Financial: React.FC = () => {
         email={email}
         setEmail={setEmail}
         chart={chart}
+        bollingerEl={bollingerEl}
         emaEl={emaEl}
         smaEl={smaEl}
         toggleEMA={toggleEMA}
         toggleSMA={toggleSMA}
+        toggleBollinger={toggleBollingerBands}
       />
     </>
   );

@@ -14,26 +14,26 @@ const useStyles = makeStyles({
   },
 });
 
-const ControlPanel = ({ smaEl, emaEl, toggleEMA, toggleSMA }) => {
+const ControlPanel = ({ bollingerEl, toggleBollinger, smaEl, emaEl, toggleEMA, toggleSMA }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.row}>
       <span>
         <Input
-          placeholder="20"
+          placeholder="50"
           color="primary"
           inputRef={smaEl}
           type="text"
           className={classes.avg}
         />
-        <Button variant="contained" color="secondary" onClick={toggleSMA}>
+        <Button variant="contained" color="primary" onClick={toggleSMA}>
           SMA
         </Button>
       </span>
       <span>
         <Input
-          placeholder="5"
+          placeholder="20"
           inputRef={emaEl}
           color="primary"
           type="text"
@@ -41,6 +41,18 @@ const ControlPanel = ({ smaEl, emaEl, toggleEMA, toggleSMA }) => {
         />
         <Button variant="contained" color="primary" onClick={toggleEMA}>
           EMA
+        </Button>
+      </span>
+      <span>
+        <Input
+          placeholder="8"
+          inputRef={bollingerEl}
+          color="primary"
+          type="text"
+          className={classes.avg}
+        />
+        <Button variant="contained" color="primary" onClick={toggleBollinger}>
+          Bollinger Bands
         </Button>
       </span>
     </div>
