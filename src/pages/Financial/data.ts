@@ -1,5 +1,3 @@
-import faker from "faker";
-
 interface Series<T> {
   name: string;
   type: string;
@@ -11,7 +9,7 @@ export type Stocks = Series<{
   y: number[];
 }>[];
 
-export type ExpensesSeries = Series<{ x: any; y: [string, number][] }>[];
+export type ExpensesSeries = Series<{ x: Date; y: [string, number][] }>[];
 
 export const series1: Stocks = [
   {
@@ -259,52 +257,6 @@ export const series1: Stocks = [
         y: [6604.98, 6606, 6604.07, 6606],
       },
     ],
-  },
-];
-
-const OHLC = () => {
-  let open;
-  let high;
-  let low;
-  let close;
-
-  const getRandom = () => +faker.random.number({ min: 9, max: 17, precision: 0.1 }).toFixed(2);
-
-  open = getRandom();
-  close = getRandom();
-
-  do {
-    high = getRandom();
-  } while (high < open || high < close);
-
-  do {
-    low = getRandom();
-  } while (low > open || low > close);
-
-  return [open, high, low, close];
-};
-
-let arr: string[] = [];
-const dateTime = () => {
-  let today = faker.date.recent(50).toISOString().slice(0, 11);
-
-  while (arr.indexOf(today) !== -1) {
-    today = faker.date.recent(50).toISOString().slice(0, 11);
-  }
-
-  arr.push(today);
-
-  return today;
-};
-
-export const series2: any = [
-  {
-    name: "STOCK ABC",
-    type: "candlestick",
-    data: [...Array(30)].map((v) => ({
-      x: dateTime(),
-      y: OHLC(),
-    })),
   },
 ];
 
