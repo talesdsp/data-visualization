@@ -19,7 +19,6 @@ const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
     },
   ];
 
-  console.log(expenses);
   const options = {
     chart: {
       height: 350,
