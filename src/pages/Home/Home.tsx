@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   container: {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: "var(--yellow)",
     padding: theme.spacing(4, 0),
     borderRadius: theme.spacing(3),
   },
@@ -26,14 +26,11 @@ const useStyles = makeStyles((theme) => ({
   github: { fontSize: theme.spacing(6) },
 }));
 
-function Home({ history }) {
+function Home() {
   const classes = useStyles();
 
   return (
     <>
-      {/* <div className={classes.nav}>
-
-    </div> */}
       <div className={classes.wrapper}>
         <Container maxWidth="md" className={classes.container}>
           <Typography variant="h2" align="center" component="h1">
