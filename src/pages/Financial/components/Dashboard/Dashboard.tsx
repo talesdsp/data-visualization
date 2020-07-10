@@ -1,4 +1,4 @@
-import { Grow, makeStyles } from "@material-ui/core";
+import { Grow, makeStyles } from "@material-ui/core"
 import {
   AccountBalance,
   AccountBalanceWallet,
@@ -7,13 +7,13 @@ import {
   KeyboardBackspace,
   Settings as SettingsIcon,
   TableChart,
-} from "@material-ui/icons";
-import React from "react";
-import { useHistory } from "react-router-dom";
-import HomeBroker from "../HomeBroker/HomeBroker";
-import { CreditCardHistory, Settings } from "./";
-import BalanceEvolution from "./BalanceEvolution/BalanceEvolution";
-import ExpensesEvolution from "./ExpensesEvolution/ExpensesEvolution";
+} from "@material-ui/icons"
+import React from "react"
+import { useHistory } from "react-router-dom"
+import HomeBroker from "../HomeBroker/HomeBroker"
+import { CreditCardHistory, Settings } from "./"
+import BalanceEvolution from "./BalanceEvolution/BalanceEvolution"
+import ExpensesEvolution from "./ExpensesEvolution/ExpensesEvolution"
 
 const useStyles = makeStyles((theme) => ({
   sideBar: {
@@ -185,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
     display: "block",
     minWidth: "36rem",
     width: "100%",
-    maxWidth: "43vw",
+    maxWidth: "40vw",
     padding: "4rem",
   },
   success: {
@@ -194,7 +194,7 @@ const useStyles = makeStyles((theme) => ({
   error: {
     color: "var(--red)",
   },
-}));
+}))
 
 function Dashboard({
   handleClick,
@@ -215,16 +215,16 @@ function Dashboard({
   toggleSMA,
   toggleBollinger,
 }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const cardNumbers = "2134 5678 9080 5";
-  const userId = "02.8874.6070";
+  const cardNumbers = "2134 5678 9080 5"
+  const userId = "02.8874.6070"
 
-  const history = useHistory();
+  const history = useHistory()
 
   const navigateBack = () => {
-    history.push("/");
-  };
+    history.push("/")
+  }
 
   return (
     <div className={[classes.container, classes.fullScreen].join(" ")}>
@@ -257,8 +257,6 @@ function Dashboard({
           <KeyboardBackspace className={[classes.icon, classes.sideIcon].join(" ")} />
           <span>Log Out</span>
         </button>
-
-        {/* <CountUp delay={1} duration={4} useEasing end={15000} /> */}
       </div>
 
       <div className={[classes.col, classes.center].join(" ")} id="info">
@@ -341,7 +339,7 @@ function Dashboard({
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Dashboard;
+export default Dashboard

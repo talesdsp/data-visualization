@@ -1,6 +1,7 @@
-import React from "react";
-import Chart from "react-apexcharts";
-import { ExpensesSeries } from "../../../data";
+import React from "react"
+import Chart from "react-apexcharts"
+import CountUp from "react-countup"
+import { ExpensesSeries } from "../../../data"
 
 const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses }) => {
   const newData = expenses
@@ -10,14 +11,14 @@ const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
         y: +day.y.reduce((acc, shops) => (acc += +shops[1]), 0).toFixed(2),
       }))
     )
-    .flat();
+    .flat()
 
   const expensesData = [
     {
       name: "Expenses",
       data: newData,
     },
-  ];
+  ]
 
   const options = {
     chart: {
@@ -35,13 +36,22 @@ const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
         colors: "#fff",
       },
     },
+    colors: ["#f08700"],
     title: {
       align: "left",
       style: {
         color: "#fff",
       },
     },
-
+    markers: {
+      size: 4,
+    },
+    grid: {
+      row: {
+        colors: ["#111", "transparent"],
+        opacity: 0.5,
+      },
+    },
     xaxis: {
       type: "datetime",
       labels: {
@@ -58,19 +68,31 @@ const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
         },
       },
     },
-  };
+  }
 
   return (
     <>
-      <h4 style={{ display: "flex", justifyContent: "center" }}>
+      <h4
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginLeft: "15px",
+        }}
+      >
         Expenses
-        <span style={{ marginLeft: "1rem", color: "var(--red)" }}>
-          ${+newData.reduce((acc, value) => (acc += value.y), 0).toFixed(2)}
+        <span style={{ marginLeft: "1rem", color: "var(--orange)" }}>
+          <CountUp
+            duration={2.5}
+            decimals={2}
+            start={+newData.reduce((acc, value) => (acc += value.y), 0) / 1.3}
+            end={+newData.reduce((acc, value) => (acc += value.y), 0).toFixed(2)}
+            prefix="$"
+          />
         </span>
       </h4>
       <Chart type="line" options={options} series={expensesData} />
     </>
-  );
-};
+  )
+}
 
-export default ExpensesEvolution;
+export default ExpensesEvolution
