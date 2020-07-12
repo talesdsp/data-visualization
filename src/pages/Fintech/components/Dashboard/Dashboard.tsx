@@ -1,4 +1,4 @@
-import { Grow, makeStyles } from "@material-ui/core";
+import { Grow, makeStyles } from "@material-ui/core"
 import {
   AccountBalance,
   AccountBalanceWallet,
@@ -7,20 +7,20 @@ import {
   KeyboardBackspace,
   Settings as SettingsIcon,
   TableChart,
-} from "@material-ui/icons";
-import React from "react";
-import { useHistory } from "react-router-dom";
-import HomeBroker from "../HomeBroker/HomeBroker";
-import { CreditCardHistory, Settings } from "./";
-import BalanceEvolution from "./BalanceEvolution/BalanceEvolution";
-import ExpensesEvolution from "./ExpensesEvolution/ExpensesEvolution";
+} from "@material-ui/icons"
+import React from "react"
+import { useHistory } from "react-router-dom"
+import { CreditCardHistory, Settings } from "."
+import HomeBroker from "../HomeBroker/HomeBroker"
+import BalanceEvolution from "./BalanceEvolution/BalanceEvolution"
+import ExpensesEvolution from "./ExpensesEvolution/ExpensesEvolution"
 
 const useStyles = makeStyles((theme) => ({
   sideBar: {
     position: "fixed",
     top: 0,
     left: 0,
-    background: "#272b39",
+    background: "var(--grey)",
     height: "100vh",
     maxWidth: "7rem",
     zIndex: 2,
@@ -38,16 +38,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     paddingLeft: "2rem",
     borderLeft: ".3rem solid transparent",
-    "&:focus": {
-      background: "rgba(255,255,255,.05)",
-      borderLeft: ".3rem solid var(--mint)",
-      color: "var(--mint)",
-    },
-    "&:active": {
-      background: "rgba(255,255,255,.05)",
-      borderLeft: ".3rem solid var(--mint)",
-      color: "var(--mint)",
-    },
     "&:hover": {
       background: "rgba(255,255,255,.05)",
       borderLeft: ".3rem solid var(--mint)",
@@ -64,11 +54,11 @@ const useStyles = makeStyles((theme) => ({
   },
   center: {
     height: "100vh",
+    width: "calc(100vw - 7rem)",
     marginLeft: "7rem",
     position: "absolute",
     top: 0,
     left: 0,
-    padding: theme.spacing(3),
   },
   container: {
     display: "flex",
@@ -116,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     position: "relative",
-    backgroundImage: "linear-gradient(to right, #392F5A, var(--blue))",
+    backgroundImage: "linear-gradient(to right, var(--purple), var(--blue))",
     width: "30rem",
     height: "18rem",
     borderRadius: ".5rem",
@@ -126,6 +116,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#eee",
     fontWeight: "bold",
     fontFamily: "monospace",
+    boxShadow: "4px 4px 10px rgba(0,0,0,.2)",
   },
   cardNumber: {
     fontSize: "1.8rem",
@@ -177,16 +168,19 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     minHeight: "100vh",
     textAlign: "center",
-    padding: "4rem",
+    padding: "2rem 0 0  ",
     transition: "all 650ms ease",
   },
 
   chart: {
     display: "block",
     minWidth: "36rem",
+    backgroundColor: "var(--grey)",
     width: "100%",
-    maxWidth: "43vw",
-    padding: "4rem",
+    maxWidth: "38vw",
+    padding: "2rem",
+    boxShadow: "4px 4px 10px rgba(0,0,0,.2)",
+    borderRadius: "12px",
   },
   success: {
     color: "var(--mint)",
@@ -194,7 +188,22 @@ const useStyles = makeStyles((theme) => ({
   error: {
     color: "var(--red)",
   },
-}));
+  line: {
+    cursor: "pointer",
+    borderTop: "1px solid var(--blue)",
+    borderLeft: "1px solid var(--blue)",
+    borderBottom: "1px solid var(--purple)",
+    borderRight: "1px solid var(--purple)",
+    boxShadow: "4px 4px 10px rgba(0,0,0,.2)",
+    width: "fit-content",
+    backgroundColor: "var(--grey)",
+    padding: "5px",
+    margin: "5px 0",
+    fontSize: "13px",
+    borderRadius: "8px",
+    transition: "all 650ms linear",
+  },
+}))
 
 function Dashboard({
   handleClick,
@@ -215,26 +224,34 @@ function Dashboard({
   toggleSMA,
   toggleBollinger,
 }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const cardNumbers = "2134 5678 9080 5";
-  const userId = "02.8874.6070";
+  const cardNumbers = "2134 5678 9080 5"
+  const userId = "02.8874.6070"
 
-  const history = useHistory();
+  const history = useHistory()
 
   const navigateBack = () => {
-    history.push("/");
-  };
+    history.push("/")
+  }
 
   return (
     <div className={[classes.container, classes.fullScreen].join(" ")}>
       <div className={[classes.col, classes.sideBar].join(" ")}>
-        <button className={[classes.item, "tab-tip"].join(" ")} id="wallet" onClick={handleClick}>
+        <button
+          className={[classes.item, "tab-tip", "active-tab"].join(" ")}
+          id="wallet"
+          onClick={() => handleClick("wallet")}
+        >
           <AccountBalanceWallet className={[classes.icon, classes.sideIcon].join(" ")} />
           <span>Wallet</span>
         </button>
 
-        <button className={[classes.item, "tab-tip"].join(" ")} id="broker" onClick={handleClick}>
+        <button
+          className={[classes.item, "tab-tip"].join(" ")}
+          id="broker"
+          onClick={() => handleClick("broker")}
+        >
           <AccountBalance className={[classes.icon, classes.sideIcon].join(" ")} />
           <span>Home Broker</span>
         </button>
@@ -242,13 +259,17 @@ function Dashboard({
         <button
           className={[classes.item, "tab-tip"].join(" ")}
           id="creditCard"
-          onClick={handleClick}
+          onClick={() => handleClick("creditCard")}
         >
           <CreditCard className={[classes.icon, classes.sideIcon].join(" ")} />
           <span>Credit Card</span>
         </button>
 
-        <button className={[classes.item, "tab-tip"].join(" ")} id="settings" onClick={handleClick}>
+        <button
+          className={[classes.item, "tab-tip"].join(" ")}
+          id="settings"
+          onClick={() => handleClick("settings")}
+        >
           <SettingsIcon className={[classes.icon, classes.sideIcon].join(" ")} />
           <span>Settings</span>
         </button>
@@ -257,15 +278,16 @@ function Dashboard({
           <KeyboardBackspace className={[classes.icon, classes.sideIcon].join(" ")} />
           <span>Log Out</span>
         </button>
-
-        {/* <CountUp delay={1} duration={4} useEasing end={15000} /> */}
       </div>
 
       <div className={[classes.col, classes.center].join(" ")} id="info">
         {wallet === true && (
           <Grow in={wallet}>
             <div className={[classes.tab, classes.col].join(" ")}>
-              <div className={classes.row}>
+              <div
+                className={classes.row}
+                style={{ justifyContent: "space-evenly", marginBottom: "40px" }}
+              >
                 <div className={[classes.card].join(" ")}>
                   <div className={[classes.bankName].join(" ")}>
                     <AcUnit className={[classes.icon, classes].join(" ")} />
@@ -279,17 +301,25 @@ function Dashboard({
                   <span className={classes.expiry}>25/09</span>
                 </div>
 
+                <div style={{ fontFamily: "Kaushan Script, cursive", fontSize: "31px" }}>
+                  Welcome back, {(name as string).split(" ")[0]}
+                </div>
+
                 <div>
-                  <p>Liberland: The Country on the Blockchain</p>
-                  <p>Oil jumps 2% on optimism around OPEC+ output pact</p>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque rem quam, ipsa
-                    illo eaque perspiciatis?
+                  <p className={[classes.line].join(" ")}>
+                    {"Netherlands data center market is likely to grow at a CAGR Of over 4% during the forecast period 2020-2025".substring(
+                      0,
+                      55
+                    )}
+                    ...
                   </p>
+                  <p className={classes.line}>Liberland: The Country on the Blockchain</p>
+                  <p className={classes.line}>Oil jumps 2% on optimism around OPEC+ output pact</p>
+                  <p className={classes.line}>Japan's wholesale price fall eases in June</p>
                 </div>
               </div>
 
-              <div className={classes.row}>
+              <div className={classes.row} style={{ justifyContent: "space-evenly" }}>
                 <div className={classes.chart}>
                   <BalanceEvolution />
                 </div>
@@ -341,7 +371,7 @@ function Dashboard({
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Dashboard;
+export default Dashboard

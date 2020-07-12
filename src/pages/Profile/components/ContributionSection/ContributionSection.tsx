@@ -1,14 +1,14 @@
-import { makeStyles } from "@material-ui/core";
-import React from "react";
-import GithubCalendar from "react-github-calendar";
-import ReactTooltip from "react-tooltip";
+import { makeStyles } from "@material-ui/core"
+import React from "react"
+import GithubCalendar from "react-github-calendar"
+import ReactTooltip from "react-tooltip"
 
 const useStyles = makeStyles((theme) => ({
   container: {
     maxWidth: "70rem",
     width: "100%",
     minHeight: "30rem",
-    height: "100vh",
+
     margin: "auto",
     display: "flex",
     alignContent: "center",
@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "underline",
     fontWeight: "bold",
   },
-}));
+}))
 
 function ContributionSection({ username }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.container}>
@@ -29,7 +29,7 @@ function ContributionSection({ username }) {
         <ReactTooltip delayShow={50} html />
       </GithubCalendar>
     </div>
-  );
+  )
 }
 
-export default React.memo(ContributionSection);
+export default React.memo(ContributionSection)

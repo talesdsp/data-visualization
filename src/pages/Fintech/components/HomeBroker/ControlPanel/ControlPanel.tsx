@@ -1,5 +1,5 @@
-import { Button, Input, makeStyles } from "@material-ui/core";
-import React from "react";
+import { Button, Input, makeStyles } from "@material-ui/core"
+import React from "react"
 
 const useStyles = makeStyles({
   row: {
@@ -7,18 +7,23 @@ const useStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "space-around",
   },
+  col: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "start",
+  },
   avg: {
     color: "#fff",
     fontSize: "1.6rem",
     width: "5rem",
   },
-});
+})
 
 const ControlPanel = ({ bollingerEl, toggleBollinger, smaEl, emaEl, toggleEMA, toggleSMA }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
-    <div className={classes.row}>
+    <div className={classes.col} style={{ marginLeft: "40px" }}>
       <span>
         <Input
           placeholder="50"
@@ -31,7 +36,7 @@ const ControlPanel = ({ bollingerEl, toggleBollinger, smaEl, emaEl, toggleEMA, t
           SMA
         </Button>
       </span>
-      <span>
+      <span style={{ margin: "10px 0" }}>
         <Input
           placeholder="20"
           inputRef={emaEl}
@@ -56,7 +61,7 @@ const ControlPanel = ({ bollingerEl, toggleBollinger, smaEl, emaEl, toggleEMA, t
         </Button>
       </span>
     </div>
-  );
-};
+  )
+}
 
-export default ControlPanel;
+export default ControlPanel
