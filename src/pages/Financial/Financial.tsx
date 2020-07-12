@@ -1,42 +1,42 @@
-import React, { useReducer, useRef, useState } from "react";
-import { Dashboard } from "./components";
-import { expenses, series1 } from "./data";
-import MovingAverage from "./models/moving_average";
+import React, { useReducer, useRef, useState } from "react"
+import { Dashboard } from "./components"
+import { expenses, series1 } from "./data"
+import MovingAverage from "./models/moving_average"
 
-const initialState = { wallet: true, credit: false, broker: false, settings: false };
+const initialState = { wallet: true, credit: false, broker: false, settings: false }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "wallet":
-      return initialState;
+      return initialState
     case "broker":
-      return { ...initialState, wallet: false, broker: true };
+      return { ...initialState, wallet: false, broker: true }
     case "creditCard":
-      return { ...initialState, wallet: false, credit: true };
+      return { ...initialState, wallet: false, credit: true }
     case "settings":
-      return { ...initialState, wallet: false, settings: true };
+      return { ...initialState, wallet: false, settings: true }
     default:
-      return initialState;
+      return initialState
   }
-};
+}
 
 const Financial: React.FC = () => {
-  const [intervalEMA, setEMA] = useState(0);
-  const [intervalSMA, setSMA] = useState(0);
-  const [intervalBollinger, setBollinger] = useState(0);
+  const [intervalEMA, setEMA] = useState(0)
+  const [intervalSMA, setSMA] = useState(0)
+  const [intervalBollinger, setBollinger] = useState(0)
 
-  const [chosenChart, setChosenChart] = useState(series1);
+  const [chosenChart, setChosenChart] = useState(series1)
 
   const [chart, setChart] = useState(
     new MovingAverage({ series: chosenChart, intervalEMA, intervalSMA, intervalBollinger })
-  );
+  )
 
-  const smaEl = useRef(null);
-  const emaEl = useRef(null);
-  const bollingerEl = useRef(null);
+  const smaEl = useRef(null)
+  const emaEl = useRef(null)
+  const bollingerEl = useRef(null)
 
   const toggleSMA = () => {
-    setSMA(+smaEl.current.value);
+    setSMA(+smaEl.current.value)
     setChart(
       new MovingAverage({
         series: chosenChart,
@@ -44,11 +44,11 @@ const Financial: React.FC = () => {
         intervalSMA: +smaEl.current.value,
         intervalBollinger,
       })
-    );
-  };
+    )
+  }
 
   const toggleEMA = () => {
-    setEMA(+emaEl.current.value);
+    setEMA(+emaEl.current.value)
     setChart(
       new MovingAverage({
         series: chosenChart,
@@ -56,11 +56,11 @@ const Financial: React.FC = () => {
         intervalSMA,
         intervalBollinger,
       })
-    );
-  };
+    )
+  }
 
   const toggleBollingerBands = () => {
-    setBollinger(+bollingerEl.current.value);
+    setBollinger(+bollingerEl.current.value)
     setChart(
       new MovingAverage({
         series: chosenChart,
@@ -68,19 +68,22 @@ const Financial: React.FC = () => {
         intervalSMA,
         intervalBollinger: +bollingerEl.current.value,
       })
-    );
-  };
+    )
+  }
 
-  const [currentTab, dispatch] = useReducer(reducer, initialState);
+  const [currentTab, dispatch] = useReducer(reducer, initialState)
 
-  const [name, setName] = useState<any>("Elisa Montenegro");
-  const [email, setEmail] = useState<any>("contact@elisa.com");
-  const [, setPassword] = useState<any>("contact@elisa.com");
+  const [name, setName] = useState<any>("Elisa Montenegro")
+  const [email, setEmail] = useState<any>("contact@elisa.com")
+  const [, setPassword] = useState<any>("contact@elisa.com")
 
-  const handleClick = (e) => {
-    let id = document.activeElement.id;
-    dispatch({ type: id });
-  };
+  const handleClick = (id: "wallet" | "broker" | "creditCard" | "settings") => {
+    document.querySelectorAll(".tab-tip").forEach((button) => button.classList.remove("active-tab"))
+
+    document.querySelector("#" + id).classList.add("active-tab")
+
+    dispatch({ type: id })
+  }
 
   return (
     <>
@@ -102,7 +105,7 @@ const Financial: React.FC = () => {
         toggleBollinger={toggleBollingerBands}
       />
     </>
-  );
-};
+  )
+}
 
-export default Financial;
+export default Financial
