@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core"
 import React from "react"
 import { Provider } from "react-redux"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { Financial, Home, Profile } from "./index"
+import { Fintech, Home, Profile } from "./index"
 import store from "./Profile/store"
 
 const Router = () => {
@@ -23,7 +23,7 @@ const Router = () => {
           )}
         />
 
-        <Route exact path="/fintech" component={Financial} />
+        <Route exact path="/fintech" component={Fintech} />
       </Switch>
     </BrowserRouter>
   )
