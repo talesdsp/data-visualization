@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-const Financial: React.FC = () => {
+const Fintech: React.FC = () => {
   const [intervalEMA, setEMA] = useState(0)
   const [intervalSMA, setSMA] = useState(0)
   const [intervalBollinger, setBollinger] = useState(0)
@@ -108,4 +108,4 @@ const Financial: React.FC = () => {
   )
 }
 
-export default Financial
+export default Fintech

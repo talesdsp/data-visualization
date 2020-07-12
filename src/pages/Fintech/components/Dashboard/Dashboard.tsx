@@ -10,8 +10,8 @@ import {
 } from "@material-ui/icons"
 import React from "react"
 import { useHistory } from "react-router-dom"
+import { CreditCardHistory, Settings } from "."
 import HomeBroker from "../HomeBroker/HomeBroker"
-import { CreditCardHistory, Settings } from "./"
 import BalanceEvolution from "./BalanceEvolution/BalanceEvolution"
 import ExpensesEvolution from "./ExpensesEvolution/ExpensesEvolution"
 
@@ -299,6 +299,10 @@ function Dashboard({
                     <p style={{ fontSize: "1.4rem" }}>{name}</p>
                   </div>
                   <span className={classes.expiry}>25/09</span>
+                </div>
+
+                <div style={{ fontFamily: "Kaushan Script, cursive", fontSize: "31px" }}>
+                  Welcome back, {(name as string).split(" ")[0]}
                 </div>
 
                 <div>

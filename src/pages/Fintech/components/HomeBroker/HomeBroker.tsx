@@ -1,6 +1,6 @@
-import { Grid } from "@material-ui/core";
-import React from "react";
-import { CandleStick, ControlPanel } from "./";
+import { Grid } from "@material-ui/core"
+import React from "react"
+import { CandleStick, ControlPanel } from "."
 
 const HomeBroker = ({
   chart,
@@ -27,7 +27,7 @@ const HomeBroker = ({
         />
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default HomeBroker;
+export default HomeBroker
