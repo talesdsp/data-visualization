@@ -6,10 +6,7 @@ import { ExpensesSeries } from "../../../data"
 const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses }) => {
   const newData = expenses
     .map((chart) =>
-      chart.data.map((day) => ({
-        x: day.x,
-        y: +day.y.reduce((acc, shops) => (acc += +shops[1]), 0).toFixed(2),
-      }))
+      chart.data.map((day) => -day.y.reduce((acc, shops) => (acc += +shops[1]), 0).toFixed(2))
     )
     .flat()
 
@@ -20,10 +17,9 @@ const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
     },
   ]
 
+  const days = expenses.map((chart) => chart.data.map((day) => day.x.toISOString())).flat()
+
   const options = {
-    chart: {
-      height: 350,
-    },
     tooltip: { theme: "dark" },
     dataLabels: {
       enabled: false,
@@ -36,24 +32,29 @@ const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
         colors: "#fff",
       },
     },
-    colors: ["#f08700"],
-    title: {
-      align: "left",
-      style: {
-        color: "#fff",
+    colors: ["red"],
+    chart: {
+      offsetY: 10,
+      toolbar: {
+        show: true,
+        tools: {
+          download: 0,
+          selection: 1,
+          zoom: 1,
+          zoomin: 1,
+          zoomout: 1,
+          pan: 1,
+        },
+        autoSelected: "zoom",
       },
-    },
-    markers: {
-      size: 4,
     },
     grid: {
-      row: {
-        colors: ["#111", "transparent"],
-        opacity: 0.5,
-      },
+      show: 0,
     },
     xaxis: {
       type: "datetime",
+      categories: days,
+      position: "top",
       labels: {
         style: {
           colors: "#fff",
@@ -72,25 +73,39 @@ const ExpensesEvolution: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
 
   return (
     <>
+      <Chart
+        height={window.innerWidth * 0.17}
+        type="area"
+        options={options}
+        series={expensesData}
+      />
       <h4
         style={{
           display: "flex",
           justifyContent: "space-between",
-          marginLeft: "15px",
+          alignItems: "end",
+          margin: "0 15px",
         }}
       >
-        Expenses
-        <span style={{ marginLeft: "1rem", color: "var(--orange)" }}>
+        <span
+          style={{
+            fontSize: "21px",
+            color: "white",
+            borderRadius: "5%",
+            backgroundColor: "var(--red)",
+            padding: "5px",
+          }}
+        >
           <CountUp
             duration={2.5}
             decimals={2}
-            start={+newData.reduce((acc, value) => (acc += value.y), 0) / 1.3}
-            end={+newData.reduce((acc, value) => (acc += value.y), 0).toFixed(2)}
+            start={+newData.reduce((acc, value) => (acc += value), 0) / 1.3}
+            end={+newData.reduce((acc, value) => (acc += value), 0).toFixed(2)}
             prefix="$"
           />
         </span>
+        Expenses
       </h4>
-      <Chart type="line" options={options} series={expensesData} />
     </>
   )
 }

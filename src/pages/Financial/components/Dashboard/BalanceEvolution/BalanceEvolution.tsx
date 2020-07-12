@@ -7,7 +7,7 @@ const options = {
     enabled: false,
   },
   stroke: {
-    curve: "stepline",
+    curve: "smooth",
   },
 
   title: {
@@ -16,18 +16,18 @@ const options = {
       color: "#fff",
     },
   },
-  markers: { size: 0 },
+  markers: {
+    size: 4,
+  },
   legend: {
     horizontalAlign: "left",
     labels: {
       colors: "#fff",
     },
   },
+  colors: ["springgreen"],
   grid: {
-    row: {
-      colors: ["#111", "transparent"],
-      opacity: 0.5,
-    },
+    show: 0,
   },
   tooltip: {
     theme: "dark",
@@ -61,6 +61,22 @@ const options = {
       },
     },
   },
+  chart: {
+    toolbar: {
+      show: true,
+      offsetX: 0,
+      offsetY: 0,
+      tools: {
+        download: 0,
+        selection: 1,
+        zoom: 1,
+        zoomin: 1,
+        zoomout: 1,
+        pan: 1,
+      },
+      autoSelected: "zoom",
+    },
+  },
 }
 
 const series = [
@@ -73,9 +89,16 @@ const series = [
 const BalanceEvolution = () => {
   return (
     <>
-      <h4 style={{ display: "flex", justifyContent: "start", marginLeft: "15px" }}>
-        Bank Account
-        <span style={{ marginLeft: "1rem", color: "var(--mint)" }}>
+      <h4 style={{ display: "flex", justifyContent: "space-between", margin: "0 15px" }}>
+        <span
+          style={{
+            color: "white",
+            backgroundColor: "#03B550",
+            borderRadius: "5%",
+            padding: "5px",
+            fontSize: "21px",
+          }}
+        >
           <CountUp
             duration={2.5}
             decimals={2}
@@ -84,8 +107,9 @@ const BalanceEvolution = () => {
             prefix="$"
           />
         </span>
+        Balance
       </h4>
-      <Chart type="area" options={options} series={series} />
+      <Chart height={window.innerWidth * 0.17} type="area" options={options} series={series} />
     </>
   )
 }
