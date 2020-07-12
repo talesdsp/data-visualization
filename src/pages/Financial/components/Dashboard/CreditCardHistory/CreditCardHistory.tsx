@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/core";
-import React from "react";
-import { ExpensesSeries } from "../../../data";
+import { Button, makeStyles } from "@material-ui/core"
+import React from "react"
+import { ExpensesSeries } from "../../../data"
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -9,11 +9,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "start",
     fontSize: "1.6rem",
     minWidth: "35rem",
-    width: "60%",
+    width: "40%",
   },
   button: {
-    padding: theme.spacing(0, 3),
-    borderRadius: ".5rem",
     fontSize: "1.4rem",
   },
   row: {
@@ -30,8 +28,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   listItem: {
+    color: "#ccc",
     padding: theme.spacing(1, 1),
-    borderBottom: ".1rem solid #555",
+    borderBottom: ".1rem solid var(--purple)",
     "&:hover": {
       background: "rgba(255,255,255,.02)",
     },
@@ -42,30 +41,35 @@ const useStyles = makeStyles((theme) => ({
     margin: "2rem 0",
   },
   payments: {
-    color: theme.palette.secondary.main,
+    color: "red",
   },
   history: {
     margin: "0 auto",
     width: "100%",
     minWidth: "36rem",
   },
-}));
+  date: {
+    color: "var(--blue)",
+  },
+}))
 
 const CreditCardHistory: React.FC<{ expenses: ExpensesSeries }> = ({ expenses }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.wrapper}>
       <div className={[classes.row, classes.between].join(" ")}>
         <h2 style={{ marginBottom: "2rem" }}>Expenses</h2>
-        <button className={classes.button}>Print bank statement</button>
+        <Button variant="contained" className={classes.button}>
+          Print bank statement
+        </Button>
       </div>
 
       <div className={classes.history}>
         {expenses.map((chart) =>
           chart.data.map((day) => (
             <div key={day.x.toDateString()} className={classes.group}>
-              {day.x.toDateString()}
+              <span className={classes.date}>{day.x.toDateString()}</span>
               {day.y.map((payment) => (
                 <div className={classes.col}>
                   <div
@@ -82,7 +86,7 @@ const CreditCardHistory: React.FC<{ expenses: ExpensesSeries }> = ({ expenses })
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CreditCardHistory;
+export default CreditCardHistory

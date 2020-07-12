@@ -1,15 +1,15 @@
 interface Series<T> {
-  name: string;
-  type: string;
-  data: T[];
+  name: string
+  type: string
+  data: T[]
 }
 
 export type Stocks = Series<{
-  x: Date;
-  y: number[];
-}>[];
+  x: Date
+  y: number[]
+}>[]
 
-export type ExpensesSeries = Series<{ x: Date; y: [string, number][] }>[];
+export type ExpensesSeries = Series<{ x: Date; y: [string, number][] }>[]
 
 export const series1: Stocks = [
   {
@@ -258,7 +258,7 @@ export const series1: Stocks = [
       },
     ],
   },
-];
+]
 
 export const expenses: ExpensesSeries = [
   {
@@ -287,7 +287,6 @@ export const expenses: ExpensesSeries = [
       {
         x: new Date("2020-11-5"),
         y: [
-          ["Marketing experts", 123.9],
           ["Uber", 22.13],
           ["Coffee Point", 33.7],
           ["BakerMasters", 10.2],
@@ -310,4 +309,4 @@ export const expenses: ExpensesSeries = [
       },
     ],
   },
-];
+]
