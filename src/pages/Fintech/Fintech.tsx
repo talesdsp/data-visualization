@@ -25,7 +25,7 @@ const Fintech: React.FC = () => {
   const [intervalSMA, setSMA] = useState(0)
   const [intervalBollinger, setBollinger] = useState(0)
 
-  const [chosenChart, setChosenChart] = useState(series1)
+  const [chosenChart] = useState(series1)
 
   const [chart, setChart] = useState(
     new MovingAverage({ series: chosenChart, intervalEMA, intervalSMA, intervalBollinger })
