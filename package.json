@@ -11,7 +11,7 @@
     "@nivo/calendar": "^0.62.0",
     "@nivo/pie": "^0.62.0",
     "apexcharts": "^3.19.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "clipboard": "^2.0.6",
     "faker": "^4.1.0",
